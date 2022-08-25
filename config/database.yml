@@ -20,7 +20,7 @@ default: &default
   port: 5432
   adapter: postgresql
   username: <%= ENV["FINAL_PROJECT_DATABASE_USERNAME"] %>
-  password: <%= ENV["STOCK_TRADING_APP_DATABASE_PASSWORD"] %>
+  password: <%= ENV["FINAL_PROJECT_DATABASE_PASSWORD"] %>
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
