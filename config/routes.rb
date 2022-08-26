@@ -10,5 +10,7 @@ Rails.application.routes.draw do
       resources :bids
     end
   end
+
+  root "shoes#index"
   
 end

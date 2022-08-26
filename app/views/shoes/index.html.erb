@@ -1,0 +1,23 @@
+<h1>Shoes#index</h1>
+<%= link_to "Home", root_path %>
+<h1>Owned by <%= current_user.email %></h1>
+
+<div>
+    <% @shoes.each do |shoe| %>
+        <div>
+            <h5>Shoe: <%= shoe.brand %>, <%= shoe.model %> size: <%= shoe.size %> color: <%= shoe.color %></h5>
+            <h5>Condition: <%= shoe.condition %></h5>
+            <h5>Starting Price: <%= shoe.starting_price %></h5>
+            <%= link_to "View Shoe", shoe_path(shoe.id) %>
+            <%= link_to "Edit Shoe", edit_shoe_path(shoe.id) %>
+            <%= link_to "Destroy Shoe", shoe_path(shoe.id), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                } %>
+        </div>
+    <% end %>
+</div>
+
+<div>
+    <%= link_to "Add New Shoe", new_shoe_path %>
+</div>
