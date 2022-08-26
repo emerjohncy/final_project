@@ -33,7 +33,7 @@ class User < ApplicationRecord
     end
   end
 
-  # has_many :shoes
-  # has_many :auctions, through: :shoes
-  # has_many :bids
+  has_many :shoes
+  has_many :auctions, through: :shoes
+  has_many :bids
 end
