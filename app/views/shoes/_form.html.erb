@@ -1,0 +1,45 @@
+<div>
+    <div>
+        <%= form_with model: @shoe do |f| %>
+            <div>
+                <%= f.label :brand %>
+                <%= f.text_field :brand, autofocus: true %>
+            </div>
+
+            <div>
+                <%= f.label :model %>
+                <%= f.text_field :model, autofocus: true %>
+            </div>
+
+            <div>
+                <%= f.label :condition %>
+                <%= f.text_area :condition, autofocus: true %>
+            </div>
+
+            <div>
+                <%= f.label :size %>
+                <%= f.number_field :size, step: 0.5, autofocus: true %>
+            </div>
+
+            <div>
+                <%= f.label :color %>
+                <%= f.text_field :color, autofocus: true %>
+            </div>
+
+            <div>
+                <%= f.label :starting_price %>
+                <%= f.number_field :starting_price, step: 0.01, autofocus: true %>
+            </div>
+
+            <div>
+                <%= f.submit %>
+                <%= link_to "Cancel", shoes_path %>
+            </div>
+        <% end %>
+    </div>
+
+    <div><%= @shoe.errors.full_messages.each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+</div>
