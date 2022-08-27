@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_051107) do
     t.datetime "end_date"
     t.string "status", default: "Close"
     t.string "payment_method"
+    t.float "starting_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shoe_id"], name: "index_auctions_on_shoe_id"
@@ -51,7 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_051107) do
     t.string "color"
     t.string "model"
     t.string "brand"
-    t.float "starting_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_shoes_on_user_id"

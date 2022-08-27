@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :shoes do
-    resources :auctions do
+    resources :auctions, except: :index do
       resources :bids
     end
   end
 
   root "shoes#index"
+
+  get "/auctions", to: "auctions#index"
   
 end

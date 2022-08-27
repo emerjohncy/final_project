@@ -7,6 +7,7 @@ class CreateAuctions < ActiveRecord::Migration[7.0]
       t.datetime :end_date
       t.string :status, default: "Close"
       t.string :payment_method
+      t.float :starting_price
 
       t.timestamps
     end

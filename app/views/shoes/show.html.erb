@@ -1,15 +1,16 @@
 <h1>Show shoe</h1>
-<%= link_to "Home", root_path %>
+<%= link_to "Shoes", root_path %>
+<%= link_to "Auctions", auctions_path %>
 <h1>Owned by <%= @shoe.user.email %></h1>
 
 <div>
     <h5>Shoe: <%= @shoe.brand %>, <%= @shoe.model %> size: <%= @shoe.size %> color: <%= @shoe.color %></h5>
     <h5>Condition: <%= @shoe.condition %></h5>
-    <h5>Starting Price: <%= @shoe.starting_price %></h5>
     <%= link_to "View Shoe", shoe_path(@shoe.id) %>
     <%= link_to "Edit Shoe", edit_shoe_path(@shoe.id) %>
     <%= link_to "Destroy Shoe", shoe_path(@shoe.id), data: {
             turbo_method: :delete,
             turbo_confirm: "Are you sure?"
         } %>
+    <%= link_to "Auction Shoe", new_shoe_auction_path(@shoe.id) %>
 </div>
