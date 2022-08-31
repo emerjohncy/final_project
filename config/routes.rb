@@ -18,11 +18,13 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :shoes do
     resources :auctions, except: :index do
-      resources :bids
+      resources :bids, except: :index
     end
   end
 
   get "/auctions", to: "auctions#index"
+  get "/bids", to: "bids#index"
+  get "/:auction_id/history_bids", to: "bids#history_bids", as: "history_bids"
   root "pages#home"
   
 end

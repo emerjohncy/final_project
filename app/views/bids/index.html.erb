@@ -1,0 +1,16 @@
+<h1>Bid#index</h1>
+<%= link_to "Shoes", shoes_path %>
+<%= link_to "Auctions", auctions_path %>
+<%= link_to "Bids", bids_path %>
+<h1>Owned by <%= current_user.email %></h1>
+
+<div>
+    <% @bids.each do |bid| %>
+        <div>
+            <h5>Shoe: <%= bid.auction.shoe.brand %>, <%= bid.auction.shoe.model %></h5>
+            <h5>Price: <%= bid.price %></h5>
+            <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
+            <%= link_to "View Shoe", shoe_path(bid.auction.shoe_id) %>
+        </div>
+    <% end %>
+</div>
