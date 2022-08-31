@@ -4,12 +4,13 @@ class AuctionsController < ApplicationController
 
   def index
     @auctions = current_user.auctions.all
+
+    @auctions.each {|auction| update_auction_status(auction)}
   end
 
   def show
-    @auction = @shoe.auctions.find(params[:id]) 
-
-    # @auction.update(status: "Open")
+    @auction = @shoe.auctions.find(params[:id])
+    update_auction_status(@auction)
   end
 
   def new
@@ -20,6 +21,7 @@ class AuctionsController < ApplicationController
     @auction = @shoe.auctions.build(auction_params)
 
     if @auction.save
+      update_auction_status(@auction)
       redirect_to shoe_auction_path(@shoe.id, @auction.id)
     else
       render :new, status: :unprocessable_entity
@@ -53,5 +55,18 @@ class AuctionsController < ApplicationController
 
   def auction_params
     params.require(:auction).permit(:description, :start_date, :end_date, :payment_method, :starting_price)
+  end
+
+  def update_auction_status (auction)
+    d = Time.zone.now
+    if auction.start_date <= d && auction.end_date > d
+      auction.update(status: "Open")
+    elsif auction.end_date < d
+      if auction.bids.count == 0
+        auction.update(status: "Expired")
+      else
+        auction.update(status: "Close")
+      end
+    end
   end
 end

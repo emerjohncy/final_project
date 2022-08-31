@@ -1,6 +1,7 @@
 <h1>Auction#index</h1>
-<%= link_to "Shoes", root_path %>
+<%= link_to "Shoes", shoes_path %>
 <%= link_to "Auctions", auctions_path %>
+<%= link_to "Bids", bids_path %>
 <h1>Owned by <%= current_user.email %></h1>
 
 <div>
@@ -13,6 +14,8 @@
             <h5>Status: <%= auction.status %></h5>
             <%= link_to "View Auction", shoe_auction_path(auction.shoe.id, auction.id) %>
             <%= link_to "Edit Auction", edit_shoe_auction_path(auction.shoe.id, auction.id) %>
+            <%= link_to "Create Bid", new_shoe_auction_bid_path(auction.shoe.id, auction.id) %>
+            <%= link_to "View Bids History", history_bids_path(auction.id) %>
             <%= link_to "Destroy Auction", shoe_auction_path(auction.shoe.id, auction.id), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"

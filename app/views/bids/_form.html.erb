@@ -1,0 +1,20 @@
+<div>
+    <div>
+        <%= form_with model: [@shoe, @auction, @bid] do |f| %>
+            <div>
+                <%= f.label :price %>
+                <%= f.number_field :price, step: 0.01, autofocus: true %>
+            </div>
+
+            <div>
+                <%= f.submit %>
+                <%= link_to "Cancel", bids_path %>
+            </div>
+        <% end %>
+    </div>
+
+    <div><%= @bid.errors.full_messages.each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+</div>
