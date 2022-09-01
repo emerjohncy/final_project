@@ -1,5 +1,21 @@
+<%= render "layouts/navbar" %>
+
 <h1> Home Page </h1>
 
-<% if user_signed_in? %>
-    <%= link_to "Profile", profile_path %>
-<% end %>
+<h1>Trending Now | See All</h1>
+*Top 6(?) Auctions with highest bid count <br>
+
+<%# PATH:   /trending %>
+Sa See All: All Auctions with bids.count > 0
+
+<h1>Coming Soon!/Release Calendar | See All</h1>
+* Top 6(?) Auctions with StartDate > Datetime.Now <br>
+
+<%# PATH:   /coming_soon %>
+Sa See All: All Auctions with StartDate > Datetime.now
+
+<h1>Available Shoes | See All</h1>
+*Top 6(?) Auctions with Status:Open <br>
+
+<%# PATH:   /available_shoes %>
+Sa See All: All Auctions with Status:Open

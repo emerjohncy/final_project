@@ -1,4 +1,12 @@
-<h1>Profile</h1>
+<%= render "layouts/navbar" %>
+
+<%# Sidebar %>
+<%= render "layouts/sidebar", user: current_user %>
+
+<h1>
+    Profile
+    <%= link_to "Edit", edit_user_registration_path %>
+</h1>
 
 <h3>Name</h3>
 <%= @user.first_name %> <%= @user.last_name %>
@@ -9,19 +17,5 @@
 <h3>Email</h3>
 <%= @user.email %>
 
-<h3>Username</h3>
-<%= @user.username %>
-
 <h3>Contact Number</h3>
 <%= @user.contact_number %>
-
-<br>
-<br>
-<br>
-<%= link_to "Edit", edit_user_registration_path %>
-<br>
-<br>
-<br>
-
-<%= link_to "Home", root_path %>
-<%= link_to "Portfolio", shoes_path %>
