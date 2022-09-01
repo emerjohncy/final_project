@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   get "/bids", to: "bids#index"
   get "/:auction_id/history_bids", to: "bids#history_bids", as: "history_bids"
   root "pages#home"
+
+  get "/faq" => "pages#faq", as: "faq"
   
 end
