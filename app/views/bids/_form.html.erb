@@ -13,8 +13,12 @@
         <% end %>
     </div>
 
-    <div><%= @bid.errors.full_messages.each do |message| %>
+    <div>
+        <%= @bid.errors.full_messages.each do |message| %>
             <div><%= message %></div>
+        <% end %>
+        <% flash.each do |type, msg| %>
+            <div><%= msg %></div>
         <% end %>
     </div>
 </div>
