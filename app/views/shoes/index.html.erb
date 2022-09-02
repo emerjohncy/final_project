@@ -1,27 +1,50 @@
+<%# Navbar %>
 <%= render "layouts/navbar" %>
 
-<h1>Shoes#index</h1>
-<%= link_to "Shoes", shoes_path %>
-<%= link_to "Auctions", auctions_path %>
-<%= link_to "Bids", bids_path %>
-<h1>Owned by <%= current_user.email %></h1>
+<%# Sidebar %>
+<%= render "layouts/sidebar", user: current_user %>
 
-<div>
+<%#= link_to "Shoes", shoes_path %>
+<%#= link_to "Auctions", auctions_path %>
+<%#= link_to "Bids", bids_path %>
+
+<h1>
+    Your Portfolio
+    <%= link_to "Add New Shoes", new_shoe_path %>
+</h1>
+
+<% if @shoes.count == 0%>
+  <h2>Your Portfolio is Empty</h2>
+<% else %>
+  <div>
     <% @shoes.each do |shoe| %>
+      <%= link_to shoe_path(shoe.id) do %>
         <div>
-            <h5>Shoe: <%= shoe.brand %>, <%= shoe.model %> size: <%= shoe.size %> color: <%= shoe.color %></h5>
-            <h5>Condition: <%= shoe.condition %></h5>
-            <%= link_to "View Shoe", shoe_path(shoe.id) %>
-            <%= link_to "Edit Shoe", edit_shoe_path(shoe.id) %>
-            <%= link_to "Destroy Shoe", shoe_path(shoe.id), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                } %>
-            <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id) %>
+          <div>PICTURE</div>
+          <div><%= shoe.brand %> <%= shoe.model %> <%= shoe.color %></div>
+          <div>Size <%= shoe.size %></div>
+          <%# <div> %>
+            <%# Condition:  %>
+            <%#= shoe.condition %>
+          <%# </div> %>
+          <% if current_user.id == shoe.user_id %>
+            <div>
+              <%= link_to "Edit", edit_shoe_path(shoe.id) %>
+              <%= link_to "Delete", shoe_path(shoe.id), data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure you want to remove this item?"
+              } %>
+              <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id) %>
+            </div>
+          <% else %>
+            Owner: <%= shoe.user.username %>
+          <% end %>
         </div>
+        <br>
+      <% end %>
     <% end %>
-</div>
+<% end %>
 
-<div>
-    <%= link_to "Add New Shoe", new_shoe_path %>
+
+
 </div>
