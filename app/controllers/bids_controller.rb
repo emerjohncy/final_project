@@ -19,9 +19,14 @@ class BidsController < ApplicationController
     @bid = @auction.bids.build(bid_params)
     @bid.user_id = current_user.id
 
-    if @bid.save
-      redirect_to shoe_auction_path(@auction.shoe_id, @auction.id)
+    if @bid.price > Bid.last.price
+      if @bid.save
+        redirect_to shoe_auction_path(@auction.shoe_id, @auction.id)
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
+      flash[:error] = "Must bid higher than previous"
       render :new, status: :unprocessable_entity
     end
   end
