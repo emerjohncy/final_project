@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "/faq" => "pages#faq", as: "faq"
+  get "/buying_selling" => "pages#buying_selling"
   
 end
