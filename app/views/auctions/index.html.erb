@@ -14,6 +14,7 @@
             <h5>Payment Method: <%= auction.payment_method %></h5>
             <h5>Start: <%= auction.start_date %> End: <%= auction.end_date %></h5>
             <h5>Status: <%= auction.status %></h5>
+            <h5>Starting Price: <%= auction.starting_price %></h5>
             <%= link_to "View Auction", shoe_auction_path(auction.shoe.id, auction.id) %>
             <%= link_to "Edit Auction", edit_shoe_auction_path(auction.shoe.id, auction.id) %>
             <%= link_to "Create Bid", new_shoe_auction_bid_path(auction.shoe.id, auction.id) %>
