@@ -1,10 +1,10 @@
 <nav>
-  <%= link_to "LOGO", root_path %>      
+  <%= link_to "LOGO", root_path %>
   <%= link_to "FAQ", faq_path %>
 
   <% if user_signed_in? %>
       MyAccountButton
-         
+
       <%# Inside MyAccount Button %>
       <div><%= link_to "Buying", buying_selling_path %></div>
       <div><%= link_to "Selling", buying_selling_path %></div>
