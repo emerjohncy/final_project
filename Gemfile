@@ -83,4 +83,4 @@ group :test do
 end
 
 gem "nokogiri"
-gem ''
+gem 'cssbundling-rails'
