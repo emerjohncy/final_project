@@ -1,6 +1,7 @@
 class ShoesController < ApplicationController
   before_action :authenticate_user!, except: ['show']
   before_action :get_shoe, only: ['show', 'edit', 'update', 'destroy']
+  before_action :restrict_access, except: ['show']
   
   def index
     @shoes = current_user.shoes.all
@@ -47,5 +48,11 @@ class ShoesController < ApplicationController
 
   def shoe_params
     params.require(:shoe).permit(:size, :condition, :color, :model, :brand)
+  end
+
+  def restrict_access
+    if current_user.id != @shoe.user_id
+      redirect_to shoe_path(params[:id])
+    end
   end
 end
