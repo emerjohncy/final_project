@@ -6,12 +6,11 @@
       MyAccountButton
          
       <%# Inside MyAccount Button %>
-      <div>Buying</div>
-      <div>Selling</div>
+      <div><%= link_to "Buying", buying_selling_path %></div>
+      <div><%= link_to "Selling", buying_selling_path %></div>
       <div><%= link_to "Portfolio", shoes_path %></div>
       <div><%= link_to "Profile", profile_path %></div>
       <div><%= link_to "Log Out", destroy_user_session_path, data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' } %></div>
-
   <% else %>
     <%= link_to "Login", new_user_session_path %>
     <%= link_to "Sign Up", new_user_registration_path %>
