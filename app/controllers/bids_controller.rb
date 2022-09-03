@@ -18,10 +18,13 @@ class BidsController < ApplicationController
   def create
     @bid = @auction.bids.build(bid_params)
     @bid.user_id = current_user.id
-
-    if @bid.save
-      redirect_to shoe_auction_path(@auction.shoe_id, @auction.id)
+    
+    if @auction.bids.second_to_last.nil? && @bid.price > @auction.starting_price
+      save_bid(@bid)
+    elsif @auction.bids.second_to_last.present? && @bid.price > @auction.bids.second_to_last.price  
+      save_bid(@bid)
     else
+      flash[:error] = "Must bid higher"
       render :new, status: :unprocessable_entity
     end
   end
@@ -37,5 +40,13 @@ class BidsController < ApplicationController
 
   def bid_params
     params.require(:bid).permit(:price)
+  end
+
+  def save_bid(bid)
+    if bid.save
+      redirect_to shoe_auction_path(@auction.shoe_id, @auction.id)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 end
