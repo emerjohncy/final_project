@@ -20,7 +20,7 @@
     <% @shoes.each do |shoe| %>
       <%= link_to shoe_path(shoe.id) do %>
         <div>
-          <div>PICTURE</div>
+          <div><%= image_tag("sample.png") %></div>
           <div><%= shoe.brand %> <%= shoe.model %> <%= shoe.color %></div>
           <div>Size <%= shoe.size %></div>
           <%# <div> %>
