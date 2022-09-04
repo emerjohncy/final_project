@@ -35,7 +35,12 @@
   <br>
 
   <div>
-  Last Bid: <%#= @auction.bids.second_to_last.price %> |
+  Last Bid: 
+  <% if @auction.bids.second_to_last.present? %>
+    <%= @auction.bids.second_to_last.price %> |
+  <% else %>
+    No Bids yet |
+  <% end %>
   <%= link_to "View Bids", history_bids_path(@auction.id) %>
   | <%= link_to "View Auction Details" %>
   </div>
@@ -43,7 +48,14 @@
   <h5>Description: <%= @auction.description %></h5>
   <h5>Starting Price: <%= @auction.starting_price %></h5>
   <h5>Number of Bids: <%= @auction.bids.count %></h5>
-  <h5>Highest Bidder: <%#= @auction.bids.second_to_last.user.username %></h5>
+  <h5>
+    Highest Bidder: 
+    <% if @auction.bids.second_to_last.present? %>
+      <%= @auction.bids.second_to_last.user.username %>
+    <% else %>
+      No Bids yet
+    <% end %>
+  </h5>
   <h5>Opening Time: <%= @auction.start_date %></h5>
   <h5>Closing Time: <%= @auction.end_date %></h5>
   <h5>Status: <%= @auction.status %></h5>
