@@ -25,7 +25,7 @@ class BidsController < ApplicationController
       save_bid(@bid)
     else
       flash[:error] = "Must bid higher"
-      render :new, status: :unprocessable_entity
+      redirect_to shoe_auction_path(@shoe.id, @auction.id)
     end
   end
 
