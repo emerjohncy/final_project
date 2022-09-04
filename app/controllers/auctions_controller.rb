@@ -18,6 +18,8 @@ class AuctionsController < ApplicationController
   def show
     @auction = @shoe.auctions.find(params[:id])
     update_auction_status(@auction)
+
+    @bid = @auction.bids.build
   end
 
   def new
