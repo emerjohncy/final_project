@@ -8,7 +8,7 @@
 
             <div>
                 <%= f.submit %>
-                <%= link_to "Cancel", bids_path %>
+                <%= link_to "Cancel", shoe_auction_path(@shoe.id, @auction.id) %>
             </div>
         <% end %>
     </div>
