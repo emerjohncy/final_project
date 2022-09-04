@@ -1,6 +1,7 @@
 class AuctionsController < ApplicationController
   before_action :authenticate_user!, except: ['show', 'open_auctions']
   before_action :get_shoe, only: ['show', 'new', 'edit', 'create', 'update', 'destroy']
+  before_action :restrict_access, except: ['index','show', 'open_auctions']
 
   def index
     @auctions = current_user.auctions.all
@@ -73,6 +74,12 @@ class AuctionsController < ApplicationController
       else
         auction.update(status: "Close")
       end
+    end
+  end
+
+  def restrict_access
+    if current_user.id != @shoe.user_id
+      redirect_to shoe_path(@shoe.id)
     end
   end
 end
