@@ -6,11 +6,13 @@
 
 <div>
     <% @bids.each do |bid| %>
-        <div>
-            <h5>Shoe: <%= bid.auction.shoe.brand %>, <%= bid.auction.shoe.model %></h5>
-            <h5>Price: <%= bid.price %></h5>
-            <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
-            <%= link_to "View Shoe", shoe_path(bid.auction.shoe_id) %>
-        </div>
+        <% unless bid.auction.status == "Expired" || bid.auction.status == "Close" %>
+            <div>
+                <h5>Shoe: <%= bid.auction.shoe.brand %>, <%= bid.auction.shoe.model %></h5>
+                <h5>Price: <%= bid.price %></h5>
+                <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
+                <%= link_to "View Shoe", shoe_path(bid.auction.shoe_id) %>
+            </div>
+         <% end %>   
     <% end %>
 </div>
