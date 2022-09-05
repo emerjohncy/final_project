@@ -74,7 +74,7 @@ class AuctionsController < ApplicationController
       if auction.bids.count == 0
         auction.update(status: "Expired")
       else
-        auction.update(status: "Close")
+        auction.update(status: "Sold")
       end
     end
   end
