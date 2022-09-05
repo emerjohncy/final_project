@@ -51,7 +51,7 @@ class ShoesController < ApplicationController
   end
 
   def restrict_access
-    if current_user.id != @shoe.user_id
+    if @shoe.present? && current_user.id != @shoe.user_id
       redirect_to shoe_path(params[:id])
     end
   end
