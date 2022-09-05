@@ -6,7 +6,7 @@
 
 <div>
     <% @bids.each do |bid| %>
-        <% unless bid.auction.status == "Expired" || bid.auction.status == "Close" %>
+        <% unless bid.auction.status == "Expired" || bid.auction.status == "Close" || bid.auction.status == "Sold"%>
             <div>
                 <h5>Shoe: <%= bid.auction.shoe.brand %>, <%= bid.auction.shoe.model %></h5>
                 <h5>Price: <%= bid.price %></h5>
