@@ -6,8 +6,10 @@
 <div>
     <% if @trending.present? %>
         <% @trending.each do |auction| %>
-            <%# Auction Card %>
-            <%= render "auctions/auction_card", auction: auction %>
+            <%= link_to shoe_auction_path(auction.shoe.id, auction.id) do %>
+                <%# Auction Card %>
+                <%= render "auctions/auction_card", auction: auction %>
+            <% end %>
         <% end %>
     <% else %>
         No Trending Auctions yet
@@ -19,8 +21,10 @@
 <div>
     <% if @coming_soon.present? %>
         <% @coming_soon.each do |auction| %>
+            <%= link_to shoe_auction_path(auction.shoe.id, auction.id) do %>
             <%# Auction Card %>
-            <%= render "auctions/auction_card", auction: auction %>
+                <%= render "auctions/auction_card", auction: auction %>
+            <% end %>
         <% end %>
     <% else %>
         <div>No Upcoming Auctions yet</div>
