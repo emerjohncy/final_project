@@ -1,19 +1,39 @@
-<nav>
-  <%= link_to "LOGO", root_path %>      
-  <%= link_to "FAQ", faq_path %>
-
-  <% if user_signed_in? %>
-      MyAccountButton
-         
-      <%# Inside MyAccount Button %>
-      <div><%= link_to "Buying", buying_path %></div>
-      <div><%= link_to "Selling", selling_path %></div>
-      <div><%= link_to "Portfolio", shoes_path %></div>
-      <div><%= link_to "Profile", profile_path %></div>
-      <div><%= button_to "Log Out", destroy_user_session_path, method: :delete %></div>
-  <% else %>
-    <%= link_to "Login", new_user_session_path %>
-    <%= link_to "Sign Up", new_user_registration_path %>
-  <% end %>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <%= link_to image_tag("aucshoes.png", height:"50"), root_path %>
+    </a>
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav d-flex flex-row ms-auto me-3">
+        <%= link_to "FAQs", faq_path, class:"nav-link" %>
+        <% if user_signed_in? %>
+          <li class="nav-item me-3 me-lg-0 dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-mdb-toggle="dropdown"
+              aria-expanded="false">
+              <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="22"
+                alt="" loading="lazy" />
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown1">
+              <li><%= link_to "Buying", buying_path, class:"dropdown-item" %></li>
+              <li><%= link_to "Selling", selling_path, class:"dropdown-item" %></li>
+              <li><%= link_to "Portfolio", shoes_path, class:"dropdown-item" %></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><%= link_to "Profile", profile_path, class:"dropdown-item" %></li>
+              <li><%= button_to "Log Out", destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
+            </ul>
+          </li>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class:"nav-link"  %>
+          <%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </nav>

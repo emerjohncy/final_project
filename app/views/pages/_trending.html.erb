@@ -1,16 +1,18 @@
 <div>
-    <% @trending.each do |auction| %>
-        <div>
-            <h5>Shoe: <%= auction.shoe.brand %>, <%= auction.shoe.model %> size: <%= auction.shoe.size %> color: <%= auction.shoe.color %></h5>
-            <h5>Description: <%= auction.description %></h5>
-            <h5>Payment Method: <%= auction.payment_method %></h5>
-            <h5>Start: <%= auction.start_date %> End: <%= auction.end_date %></h5>
-            <h5>Status: <%= auction.status %></h5>
-            <h5>Bids: <%= auction.bids.count %></h5>
-            <%= link_to "View Auction", shoe_auction_path(auction.shoe.id, auction.id) %>
-            <%= link_to "Edit Auction", edit_shoe_auction_path(auction.shoe.id, auction.id) %>
-            <%= link_to "Create Bid", new_shoe_auction_bid_path(auction.shoe.id, auction.id) %>
-            <%= link_to "View Bids History", history_bids_path(auction.id) %>
-        </div>
-    <% end %>
+    <div class="row">
+        <% @trending.each do |auction| %>
+            <div class="col-md-2 mb-4">
+                <div class="card">
+                    <%= link_to shoe_auction_path(auction.shoe.id, auction.id) do %>
+                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                        <div class="card-body">
+                            <h6 class="card-title"><%= auction.shoe.brand %> <%= auction.shoe.model %> <%= auction.shoe.size %> <%= auction.shoe.color %></h6>
+                            <p class="card-text"><div class="badge bg-secondary">$<%= auction.bids.last.price %></div></p>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+        <% end %>
+    </div>
 </div>
+

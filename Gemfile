@@ -84,3 +84,5 @@ end
 
 gem "nokogiri"
 gem 'cssbundling-rails'
+gem "font-awesome-sass", "~> 6.2.0"
+gem 'jquery-rails'

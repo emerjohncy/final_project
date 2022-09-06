@@ -1,4 +1,4 @@
-<%= render "layouts/navbar" %>
+
 
 <%# <h1>Show auction</h1> %>
 <%#= link_to "Shoes", root_path %>
@@ -37,7 +37,7 @@
   <br>
 
   <div>
-  Last Bid: 
+  Last Bid:
   <% if @auction.bids.second_to_last.present? %>
     <%= @auction.bids.second_to_last.price %> |
   <% else %>
@@ -51,7 +51,7 @@
   <h5>Starting Price: <%= @auction.starting_price %></h5>
   <h5>Number of Bids: <%= @auction.bids.count %></h5>
   <h5>
-    Highest Bidder: 
+    Highest Bidder:
     <% if @auction.bids.second_to_last.present? %>
       <%= @auction.bids.second_to_last.user.username %>
     <% else %>
