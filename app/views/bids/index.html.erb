@@ -1,8 +1,11 @@
-<h1>Bid#index</h1>
-<%= link_to "Shoes", shoes_path %>
-<%= link_to "Auctions", auctions_path %>
-<%= link_to "Bids", bids_path %>
-<h1>Owned by <%= current_user.email %></h1>
+<%= render "layouts/navbar" %>
+
+<%= render "layouts/sidebar", user: current_user %>
+
+<h1>Buying</h1>
+<%#= link_to "Shoes", shoes_path %>
+<%#= link_to "Auctions", auctions_path %>
+<%#= link_to "Bids", bids_path %>
 
 <div>
     <% @bids.each do |bid| %>
