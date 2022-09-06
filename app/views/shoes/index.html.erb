@@ -9,6 +9,7 @@
 <div>
     <% @shoes.each do |shoe| %>
         <div>
+            <%= image_tag(shoe.image) %>
             <h5>Shoe: <%= shoe.brand %>, <%= shoe.model %> size: <%= shoe.size %> color: <%= shoe.color %></h5>
             <h5>Condition: <%= shoe.condition %></h5>
             <%= link_to "View Shoe", shoe_path(shoe.id) %>

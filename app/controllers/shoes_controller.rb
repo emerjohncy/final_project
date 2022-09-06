@@ -47,7 +47,7 @@ class ShoesController < ApplicationController
   end
 
   def shoe_params
-    params.require(:shoe).permit(:size, :condition, :color, :model, :brand)
+    params.require(:shoe).permit(:size, :condition, :color, :model, :brand, :image)
   end
 
   def restrict_access
