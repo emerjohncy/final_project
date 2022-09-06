@@ -27,6 +27,11 @@
             </div>
 
             <div>
+                <%= f.label :image %>
+                <%= f.file_field :image, autofocus: true %>
+            </div>
+
+            <div>
                 <%= f.submit "Add Shoes" %>
                 <%= link_to "Cancel", shoes_path %>
             </div>
