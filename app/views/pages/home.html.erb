@@ -5,7 +5,10 @@
 </h1>
 <div>
     <% if @trending.present? %>
-        <%= render "trending" %>
+        <% @trending.each do |auction| %>
+            <%# Auction Card %>
+            <%= render "auctions/auction_card", auction: auction %>
+        <% end %>
     <% else %>
         No Trending Auctions yet
     <% end %>
@@ -15,7 +18,10 @@
 <h1>Coming Soon</h1>
 <div>
     <% if @coming_soon.present? %>
-        <%= render "coming_soon" %>
+        <% @coming_soon.each do |auction| %>
+            <%# Auction Card %>
+            <%= render "auctions/auction_card", auction: auction %>
+        <% end %>
     <% else %>
         <div>No Upcoming Auctions yet</div>
     <% end %>
