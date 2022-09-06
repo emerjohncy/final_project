@@ -16,6 +16,8 @@ class BidsController < ApplicationController
   end
 
   def create
+    redirect_to shoe_auction_path(@shoe.id, @auction.id) if @auction.status != "Open"
+    
     @bid = @auction.bids.build(bid_params)
     @bid.user_id = current_user.id
     

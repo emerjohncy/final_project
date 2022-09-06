@@ -66,7 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_112612) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string "status", default: "Close"
-    t.string "payment_method"
+    t.string "payment_method", default: "Cash"
     t.float "starting_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
