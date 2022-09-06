@@ -1,0 +1,12 @@
+<div>
+  <div>[IMAGE HERE]</div>
+  <h5><%= auction.shoe.brand %> <%= auction.shoe.model %></h5>
+  <h5><%= auction.shoe.color %></h5>
+  <h5>Size <%= auction.shoe.size %></h5>
+  <% if auction.bids.present? %>
+    <h5>Last Bid: PHP <%= auction.bids.last.price %></h5>
+    <h6><%= auction.bids.count %> bids</h6>
+  <% else %>
+    <h5>Starting Price: Php <%= auction.starting_price %>
+  <% end %>
+</div>

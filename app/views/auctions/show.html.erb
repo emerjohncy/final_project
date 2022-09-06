@@ -29,8 +29,10 @@
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"
       } %>
-  <% else %>
+  <% elsif @auction.status == "Open" %>
     <%= render "bids/form" %>
+  <% else %>
+    <h4>Auction is not open yet</h4>
   <% end %>
   <br>
 
@@ -39,7 +41,7 @@
   <% if @auction.bids.second_to_last.present? %>
     <%= @auction.bids.second_to_last.price %> |
   <% else %>
-    No Bids yet |
+    No bids yet |
   <% end %>
   <%= link_to "View Bids", history_bids_path(@auction.id) %>
   | <%= link_to "View Auction Details" %>

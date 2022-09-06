@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/auctions", to: "auctions#index"
+  get "/selling", to: "auctions#index", as: "selling"
   get "/open_auctions", to: "auctions#open_auctions"
   get "/bids", to: "bids#index"
   get "/:auction_id/history_bids", to: "bids#history_bids", as: "history_bids"
