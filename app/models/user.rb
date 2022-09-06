@@ -36,4 +36,7 @@ class User < ApplicationRecord
   has_many :shoes
   has_many :auctions, through: :shoes
   has_many :bids
+  has_one_attached :avatar
+
+  
 end

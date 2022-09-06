@@ -20,5 +20,4 @@ class PagesController < ApplicationController
     def buying_selling
         @user = current_user
     end
-    
 end

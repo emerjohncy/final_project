@@ -17,3 +17,10 @@
 
 <h3>Contact Number</h3>
 <%= @user.contact_number %>
+
+<%# Para magload ng default image pag wala inupload si user %>
+<% if @user.avatar.attached? %>
+    <div><%= image_tag(@user.avatar) %></div>
+<% else %>
+    <div><%= image_tag("sample.png") %></div>
+<% end %>
