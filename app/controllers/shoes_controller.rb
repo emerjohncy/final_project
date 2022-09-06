@@ -1,7 +1,7 @@
 class ShoesController < ApplicationController
   before_action :authenticate_user!, except: ['show']
   before_action :get_shoe, only: ['show', 'edit', 'update', 'destroy']
-  before_action :restrict_access, except: ['show']
+  before_action :restrict_access, only: ['edit', 'update', 'destroy']
   
   def index
     @shoes = current_user.shoes.all

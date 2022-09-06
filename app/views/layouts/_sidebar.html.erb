@@ -3,8 +3,8 @@
     (Sidebar)<br>     <%# Remove this line %>
     <%= user.first_name %> <%= user.last_name %>
   </h1>
-  <div>Buying</div>
-  <div>Selling</div>
+  <div><%= link_to "Buying", buying_path %></div>
+  <div><%= link_to "Selling", selling_path %></div>
   <div><%= link_to "Portfolio", shoes_path %></div>
   <div><%= link_to "Profile", profile_path %></div>
   <div><%= link_to "Log Out", destroy_user_session_path, data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' } %></div>
