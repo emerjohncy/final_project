@@ -2,6 +2,7 @@ class BidsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_auction, only: ['history_bids', 'new', 'create']
   before_action :get_shoe, only: ['new', 'create']
+  before_action :get_user, only: ['index', 'history_bids', 'new', 'create']
 
   def index
     @bids = current_user.bids.all
@@ -17,13 +18,13 @@ class BidsController < ApplicationController
 
   def create
     redirect_to shoe_auction_path(@shoe.id, @auction.id) if @auction.status != "Open"
-    
+
     @bid = @auction.bids.build(bid_params)
     @bid.user_id = current_user.id
-    
+
     if @auction.bids.second_to_last.nil? && @bid.price > @auction.starting_price
       save_bid(@bid)
-    elsif @auction.bids.second_to_last.present? && @bid.price > @auction.bids.second_to_last.price  
+    elsif @auction.bids.second_to_last.present? && @bid.price > @auction.bids.second_to_last.price
       save_bid(@bid)
     else
       flash[:error] = "Must bid higher"
@@ -50,5 +51,9 @@ class BidsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def get_user
+    @user = current_user
   end
 end

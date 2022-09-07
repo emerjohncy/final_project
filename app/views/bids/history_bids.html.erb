@@ -1,13 +1,15 @@
-<h1>Bid#History</h1>
-<%#= link_to "Shoes", shoes_path %>
-<%#= link_to "Auctions", auctions_path %>
-<%#= link_to "Bids", bids_path %>
+<div class="container">
+    <h1>Bid#History</h1>
+    <%#= link_to "Shoes", shoes_path %>
+    <%#= link_to "Auctions", auctions_path %>
+    <%#= link_to "Bids", bids_path %>
 
-<div>
-    <% @bids.each do |bid| %>
-        <div>
-            <h5>Bidder: <%= bid.user.username %></h5>
-            <h5>Price: <%= bid.price %></h5>
-        </div>
-    <% end %>
+    <div>
+        <% @bids.each do |bid| %>
+            <div>
+                <h5>Bidder: <%= bid.user.username %></h5>
+                <h5>Price: <%= bid.price %></h5>
+            </div>
+        <% end %>
+    </div>
 </div>

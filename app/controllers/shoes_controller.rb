@@ -2,7 +2,8 @@ class ShoesController < ApplicationController
   before_action :authenticate_user!, except: ['show']
   before_action :get_shoe, only: ['show', 'edit', 'update', 'destroy']
   before_action :restrict_access, only: ['edit', 'update', 'destroy']
-  
+  before_action :get_user,  only: ['index', 'new', 'create', 'show', 'edit', 'update', 'destroy']
+
   def index
     @shoes = current_user.shoes.all
   end
@@ -54,5 +55,9 @@ class ShoesController < ApplicationController
     if @shoe.present? && current_user.id != @shoe.user_id
       redirect_to shoe_path(params[:id])
     end
+  end
+
+  def get_user
+    @user = current_user
   end
 end

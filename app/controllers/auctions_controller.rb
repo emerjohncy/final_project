@@ -2,6 +2,7 @@ class AuctionsController < ApplicationController
   before_action :authenticate_user!, except: ['show', 'open_auctions']
   before_action :get_shoe, only: ['show', 'new', 'edit', 'create', 'update', 'destroy']
   before_action :restrict_access, except: ['index','show', 'open_auctions']
+  before_action :get_user, only: ['index', 'open_auctions', 'show', 'new', 'create', 'edit', 'update', 'destroy']
 
   def index
     @auctions = current_user.auctions.all
@@ -11,7 +12,7 @@ class AuctionsController < ApplicationController
 
   def open_auctions
     @auctions = Auction.where(status: "Open").order("start_date ASC")
-    
+
     @auctions.each {|auction| update_auction_status(auction)}
   end
 
@@ -56,7 +57,7 @@ class AuctionsController < ApplicationController
     @auction.destroy
     redirect_to shoes_path, status: 303
   end
-    
+
   private
   def get_shoe
     @shoe = Shoe.find(params[:shoe_id])
@@ -83,5 +84,9 @@ class AuctionsController < ApplicationController
     if current_user.id != @shoe.user_id
       redirect_to shoe_path(@shoe.id)
     end
+  end
+
+  def get_user
+    @user = current_user
   end
 end

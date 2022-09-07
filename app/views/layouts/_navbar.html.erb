@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <%= link_to image_tag("aucshoes.png", height:"50"), root_path %>
@@ -15,8 +15,11 @@
           <li class="nav-item me-3 me-lg-0 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-mdb-toggle="dropdown"
               aria-expanded="false">
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="22"
-                alt="" loading="lazy" />
+              <% if @user.avatar.attached? %>
+                <%= image_tag(@user.avatar, class: "rounded-circle", style: "width: 22px;") %>
+              <%else%>
+                <%= image_tag('avatar.jpg', class: "rounded-circle", style: "width: 22px;") %>
+              <%end%>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown1">
               <li><%= link_to "Buying", buying_path, class:"dropdown-item" %></li>
@@ -37,3 +40,5 @@
     </div>
   </div>
 </nav>
+
+

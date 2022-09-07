@@ -1,11 +1,8 @@
 
 
 <%= render "layouts/sidebar", user: current_user %>
-
+<div class="container">
 <h1>Selling</h1>
-<%#= link_to "Shoes", shoes_path %>
-<%#= link_to "Auctions", auctions_path %>
-<%#= link_to "Bids", bids_path %>
 
 <div>
     <% @auctions.each do |auction| %>
@@ -15,4 +12,5 @@
             <br>
         <% end %>
     <% end %>
+</div>
 </div>

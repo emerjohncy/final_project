@@ -1,26 +1,135 @@
 
 <%= render "layouts/sidebar", user: current_user %>
+  <div class="container py-10 mt-5 pt-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <%= image_tag(@user.avatar, class: "rounded-circle img-fluid", style: "width: 150px;") %>
+            <h5 class="my-3"><%= @user.first_name %> <%= @user.last_name %></h5>
+            <p class="text-muted mb-1">Account Created</p>
+            <p class="text-muted mb-4"><%= @user.created_at %></p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-primary">Edit Profile</button>
+              <button type="button" class="btn btn-outline-primary ms-1">Update Avatar</button>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
 
-<h1>
-    Profile
-    <%= link_to "Edit", edit_user_registration_path %>
-</h1>
 
-<h3>Name</h3>
-<%= @user.first_name %> <%= @user.last_name %>
+              <% @bids.each do |bid| %>
+                <% unless bid.auction.status == "Expired" || bid.auction.status == "Close" || bid.auction.status == "Sold"%>
+                  <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i class="fas fa-square-check fa-lg text-success"></i>
+                    <p class="mb-0"><%= bid.auction.shoe.brand %>, <%= bid.auction.shoe.model %>
+                    <p class="mb-0">₱<%= bid.price %></p>
+                    <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
+                    </p>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="row mx-auto mt-2">
+          <button type="button" class="btn btn-primary">
+            All Bids <span class="badge text-bg-secondary"><%= @bids_all.count %></span>
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.first_name %> <%= @user.last_name %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Username</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.username %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.email %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.contact_number %></p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<h3>Username</h3>
-<%= @user.username %>
+        <div class="card mb-4">
+          <div class="card-body">
+                <h5 class="mb-0 text-center">Owned Shoes</h5>
+            </div>
+        </div>
 
-<h3>Email</h3>
-<%= @user.email %>
+                  <% if @shoes_all.count == 0%>
+                    <h2>Your Portfolio is Empty</h2>
+                  <% else %>
+                    <div class="row flex-row">
+                    <% @shoes.each do |shoe| %>
 
-<h3>Contact Number</h3>
-<%= @user.contact_number %>
+                        <div class="col-md-4">
+                          <div class="card mb-4 mb-md-0">
+                            <div class="card-body">
+                              <%= link_to shoe_path(shoe.id) do %>
 
-<%# Para magload ng default image pag wala inupload si user %>
-<% if @user.avatar.attached? %>
-    <div><%= image_tag(@user.avatar) %></div>
-<% else %>
-    <div><%= image_tag("sample.png") %></div>
-<% end %>
+                                <div><%= image_tag(shoe.image, style: "width: 220px; height: 220px; object-fit: contain;" ) %></div>
+                                <div><%= shoe.brand %> <%= shoe.model %> <%= shoe.color %> Size <%= shoe.size %></div>
+                                <% if current_user.id == shoe.user_id %>
+                                  <div>
+                                    <%= link_to "Edit", edit_shoe_path(shoe.id) %>
+                                    <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id) %>
+                                    <%= link_to "Delete", shoe_path(shoe.id), data: {
+                                      turbo_method: :delete,
+                                      turbo_confirm: "Are you sure you want to remove this item?"
+                                    } %>
+                                  </div>
+                                <% else %>
+                                  Owner: <%= shoe.user.username %>
+                                <% end %>
+
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+
+                    <% end %>
+                     </div>
+                  <% end %>
+                  <div class="row justify-content-end mt-2">
+                    <button type="button" class="btn btn-primary position-relative col-2">
+                      All Shoes <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"><%= @shoes_all.count %><span class="visually-hidden">unread messages</span></span>
+                    </button>
+                  </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

@@ -4,9 +4,7 @@
 <%# <h1>Show shoe</h1> %>
 <%#= link_to "Shoes", root_path %>
 <%#= link_to "Auctions", auctions_path %>
-<br>
-<br>
-<br>
+<div class="container">
 [LEFT SIDE]
 <div>
   <h1><%= @shoe.brand %> <%= @shoe.model %></h1>
@@ -31,3 +29,4 @@
       <%= link_to "Auction Shoe", new_shoe_auction_path(@shoe.id) %>
     </div>
   <% end %>
+</div>

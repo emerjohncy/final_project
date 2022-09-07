@@ -1,14 +1,14 @@
 
 <%# Sidebar %>
 <%= render "layouts/sidebar", user: current_user %>
-
-<h1> Buying</h1>
-<% @user.bids.each do |bid| %>
-    Bid Price: <%= bid.price %><br>
-    <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction_id) %><br>
-    <br>
-<% end %>
-
+<div class="container">
+    <h1> Buying</h1>
+    <% @user.bids.each do |bid| %>
+        Bid Price: <%= bid.price %><br>
+        <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction_id) %><br>
+        <br>
+    <% end %>
+</div>
 <h1> Selling</h1>
 
 <h1> History</h1>
