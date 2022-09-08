@@ -1,24 +1,41 @@
-# README
+<p align="center">
+  
+<img src="https://github.com/emerjohncy/final_project/blob/main/app/assets/images/aucshoes-nav.png" width=250>
+  
+</p>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Welcome to AucShoes! 
+In AucShoes, you will have access to a variety of shoes in the smartest way possible. AucShoes offers a one-of-a-kind shoe experience where shoe collectors, enthusiasts, sellers, or soon-to-be fanatics can buy and sell hottest sneakers/shoes.
 
-Things you may want to cover:
+## Demo
+### AucShoes - [Github](https://github.com/emerjohncy/final_project) [Live] (https://still-caverns-49332.herokuapp.com/)
+<img src="https://github.com/druv5319/Sneaks-API/blob/master/Screenshots/demo.gif" width=700 >
 
-* Ruby version
+## Technologies Used
+  - Ruby 3.1.2
+  - Rails 7.0.3.1
+  - Bootstrap 5.2 MDBootstrap CSS Bundling Rails
+  - Font Awesome
+  - PostgreSQL 1.1
 
-* System dependencies
+## Gems Used
+  - Devise
+  - Active Storage
+  - Pry
+  - Letter Opener
+  - RSpec
+  
+## Usage
+You can fork the repository and use this line on the terminal
+```
+rails assets:precompile
+```
+and afterwards run this line
+```
+rails db:migrate
+```
 
-* Configuration
+## Acknowledgements
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ - [Avion School](https://www.avionschool.com/)
+ - [Krist Menina](https://github.com/kristm)
