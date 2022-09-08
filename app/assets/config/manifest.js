@@ -5,3 +5,5 @@
 //= link_tree ../builds
 //= link application.css
 //= link style.css
+//= link modal.js
+//= jquery_ujs

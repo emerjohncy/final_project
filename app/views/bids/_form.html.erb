@@ -1,24 +1,20 @@
 <div class="container">
     <div>
         <%= form_with model: [@shoe, @auction, @bid] do |f| %>
-            <div>
-                <%= f.label :price %>
-                <%= f.number_field :price, step: 0.01, autofocus: true %>
+            <div class="form-outline">
+                <%= f.number_field :price, step: 0.01, autofocus: true, id:"typeNumber", class:"form-control" %>
+                <label class="form-label" for="typeNumber">Input Bid</label>
             </div>
 
             <div>
-                <%= f.submit %>
-                <%= link_to "Cancel", shoe_auction_path(@shoe.id, @auction.id) %>
+                <%= f.submit class:"btn btn-success btn-block mt-2" %>
             </div>
         <% end %>
     </div>
 
     <div>
-        <%= @bid.errors.full_messages.each do |message| %>
-            <div><%= message %></div>
-        <% end %>
         <% flash.each do |type, msg| %>
-            <div><%= msg %></div>
+            <div style="color: red;"><%= type %>:<%= msg %></div>
         <% end %>
     </div>
 </div>

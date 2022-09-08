@@ -1,68 +1,151 @@
 
 
-<%# <h1>Show auction</h1> %>
-<%#= link_to "Shoes", root_path %>
-<%#= link_to "Auctions", auctions_path %>
-<%#= link_to "Bids", bids_path %>
-<div class="container">
-[LEFT SIDE]
-<div>
-  <h1><%= @shoe.brand %> <%= @shoe.model %></h1>
-  <h1><%= @shoe.color %></h1>
-  <h3>Size <%= @shoe.size %></h3>
-  <h3>Condition: <%= @shoe.condition %></h3>
-  <h3>Owner: <%= @shoe.user.username %></h3>
-  <div><%= image_tag("sample.png") %></div>
-</div>
-<br>
-<br>
-<br>
-[RIGHT SIDE]
-<div>
-  <div>COUNTDOWN HERE</div>
-  <br>
-  <% if user_signed_in? && current_user.id == @auction.shoe.user_id %>
-    <%= link_to "Edit Auction", edit_shoe_auction_path(@auction.shoe.id, @auction.id) %>
-    <%= link_to "Destroy Auction", shoe_auction_path(@auction.shoe.id, @auction.id), data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-      } %>
-  <% elsif @auction.status == "Open" %>
-    <%= render "bids/form" %>
-  <% else %>
-    <h4>Auction is not open yet</h4>
-  <% end %>
-  <br>
+<div class="container my-5 py-5 z-depth-1">
+  <div class="card">
+    <div class="card-body">
 
-  <div>
-  Last Bid:
-  <% if @auction.bids.second_to_last.present? %>
-    <%= @auction.bids.second_to_last.price %> |
-  <% else %>
-    No bids yet |
-  <% end %>
-  <%= link_to "View Bids", history_bids_path(@auction.id) %>
-  | <%= link_to "View Auction Details" %>
+
+      <!--Section: Content-->
+      <section class="">
+
+        <!-- Section heading -->
+        <h3 class="font-weight-bold mb-5">Product Details</h3>
+        <h2 class="h2-responsive text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+          <strong><%= @shoe.brand %> <%= @shoe.model %></strong>
+        </h2>
+        <span class="badge badge-success product mb-4 ml-xl-0 ml-4">Condtion: <%= @shoe.condition %></span>
+        <span class="badge badge-warning product mb-4 ml-xl-0 ml-4">Size: <%= @shoe.size %></span>
+        <span class="badge badge-info product mb-4 ml-xl-0 ml-4">Color: <%= @shoe.color %></span>
+
+
+        <div class="row">
+
+          <div class="col-lg-6">
+
+            <!--Carousel Wrapper-->
+
+
+              <!--Slides-->
+              <div class="text-center text-md-left" role="listbox">
+                    <%= image_tag("sample.png", class: "img-fluid")   %>
+              </div>
+              <!--/.Slides-->
+
+            <!--/.Carousel Wrapper-->
+
+          </div>
+
+          <div class="col-lg-5 text-md-left">
+
+
+
+
+
+            <!--Accordion wrapper-->
+            <div class="card t-5">
+              <div class="card-body">
+                <h3 class="h3-responsive text-center">
+                  <span class="red-text font-weight-bold">
+                    <strong>⚡Countdown here⚡</strong>
+                  </span>
+                  <hr>
+                </h3>
+
+                  <% if user_signed_in? && current_user.id == @auction.shoe.user_id %>
+                    <%= link_to "Edit Auction", edit_shoe_auction_path(@auction.shoe.id, @auction.id) %>
+                    <%= link_to "Destroy Auction", shoe_auction_path(@auction.shoe.id, @auction.id), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      } %>
+                  <% elsif @auction.status == "Open" %>
+                    <%= render "bids/form" %>
+                  <% else %>
+                    <h4>Auction is not open yet</h4>
+                  <% end %>
+                <hr>
+                <div class="row justify-content-evenly col-3">
+                  <h6>Last Bid:</h6>
+                  <% if @auction.bids.second_to_last.present? %>
+                    <strong><h5>₱ <%= @auction.bids.second_to_last.price %></h5></strong>
+                  <% else %>
+                    No bids yet
+                  <% end %>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <%# <%= link_to "View Bids", history_bids_path(@auction.id), class:"btn btn-primary mb-2" data-mdb-toggle="modal" data-mdb-target="#allShoes" %>
+                  <button type="button" class="btn btn-primary mb-2" data-mdb-toggle="modal" data-mdb-target="#allBids">View Bids</button>
+                </div>
+
+
+                <div class="accordion accordion-borderless" id="accordionFlushExampleX">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOneX">
+                      <button class="accordion-button" type="button" data-mdb-toggle="collapse"
+                        data-mdb-target="#flush-collapseOneX" aria-expanded="true" aria-controls="flush-collapseOneX">
+                        Shoe Detail
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOneX" class="accordion-collapse collapse show"
+                      aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
+                      <div class="accordion-body">
+                        <p>Description: <%= @auction.description %></p>
+                        <p>Starting Price: <%= @auction.starting_price %></p>
+                        <p>Number of Bids: <%= @auction.bids.count %></p>
+                        <p>
+                          Highest Bidder:
+                          <% if @auction.bids.second_to_last.present? %>
+                            <%= @auction.bids.second_to_last.user.username %>
+                          <% else %>
+                            No Bids yet
+                          <% end %>
+                        </p>
+                        <p>Opening Time: <%= @auction.start_date %></p>
+                        <p>Closing Time: <%= @auction.end_date %></p>
+                        <p>Status: <%= @auction.status %></p>
+                        <p>Payment Method: <%= @auction.payment_method %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+            <!--/.Accordion wrapper-->
+
+            <!-- Add to Cart -->
+
+            <!-- /.Add to Cart -->
+
+          </div>
+
+        </div>
+
+      </section>
+      <!--Section: Content-->
+    </div>
   </div>
-  [INSIDE AUCTION DETAILS]
-  <h5>Description: <%= @auction.description %></h5>
-  <h5>Starting Price: <%= @auction.starting_price %></h5>
-  <h5>Number of Bids: <%= @auction.bids.count %></h5>
-  <h5>
-    Highest Bidder:
-    <% if @auction.bids.second_to_last.present? %>
-      <%= @auction.bids.second_to_last.user.username %>
-    <% else %>
-      No Bids yet
-    <% end %>
-  </h5>
-  <h5>Opening Time: <%= @auction.start_date %></h5>
-  <h5>Closing Time: <%= @auction.end_date %></h5>
-  <h5>Status: <%= @auction.status %></h5>
-  <h5>Payment Method: <%= @auction.payment_method %></h5>
-  <%#= link_to "View Auction", shoe_auction_path(@auction.shoe.id, @auction.id) %>
-
-
-  <%#= link_to "Create Bid", new_shoe_auction_bid_path(@auction.shoe.id, @auction.id) %>
 </div>
+
+<!-- VIew Bids--->
+<div class="modal fade" id="allBids" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">All Shoes</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <% @auction.bids.each do |bid| %>
+            <% unless bid.user.nil? %>
+              <%= render 'bids/bidhistory', bid: bid %>
+            <%end%>
+          <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

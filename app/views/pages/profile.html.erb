@@ -10,7 +10,9 @@
             <p class="text-muted mb-1">Account Created</p>
             <p class="text-muted mb-4"><%= @user.created_at %></p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Edit Profile</button>
+              <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#editProfile">
+                Edit Profile
+              </button>
               <button type="button" class="btn btn-outline-primary ms-1">Update Avatar</button>
             </div>
           </div>
@@ -24,9 +26,9 @@
                 <% unless bid.auction.status == "Expired" || bid.auction.status == "Close" || bid.auction.status == "Sold"%>
                   <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                     <i class="fas fa-square-check fa-lg text-success"></i>
-                    <p class="mb-0"><%= bid.auction.shoe.brand %>, <%= bid.auction.shoe.model %>
+                    <p class="mb-0"><%= bid.auction.shoe.brand %> | <%= bid.auction.shoe.model %>
                     <p class="mb-0">₱<%= bid.price %></p>
-                    <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
+                    <%= link_to "View", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
                     </p>
                   </li>
                 <% end %>
@@ -35,7 +37,7 @@
           </div>
         </div>
         <div class="row mx-auto mt-2">
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#allBids">
             All Bids <span class="badge text-bg-secondary"><%= @bids_all.count %></span>
           </button>
         </div>
@@ -87,45 +89,45 @@
             </div>
         </div>
 
-                  <% if @shoes_all.count == 0%>
-                    <h2>Your Portfolio is Empty</h2>
-                  <% else %>
-                    <div class="row flex-row">
-                    <% @shoes.each do |shoe| %>
+          <% if @shoes_all.count == 0%>
+            <h2>Your Portfolio is Empty</h2>
+          <% else %>
+            <div class="row flex-row">
+            <% @shoes.each do |shoe| %>
 
-                        <div class="col-md-4">
-                          <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                              <%= link_to shoe_path(shoe.id) do %>
+                <div class="col-md-4">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body">
+                      <%= link_to shoe_path(shoe.id) do %>
 
-                                <div><%= image_tag(shoe.image, style: "width: 220px; height: 220px; object-fit: contain;" ) %></div>
-                                <div><%= shoe.brand %> <%= shoe.model %> <%= shoe.color %> Size <%= shoe.size %></div>
-                                <% if current_user.id == shoe.user_id %>
-                                  <div>
-                                    <%= link_to "Edit", edit_shoe_path(shoe.id) %>
-                                    <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id) %>
-                                    <%= link_to "Delete", shoe_path(shoe.id), data: {
-                                      turbo_method: :delete,
-                                      turbo_confirm: "Are you sure you want to remove this item?"
-                                    } %>
-                                  </div>
-                                <% else %>
-                                  Owner: <%= shoe.user.username %>
-                                <% end %>
-
-                              <% end %>
-                            </div>
+                        <div><%= image_tag(shoe.image, style: "width: 220px; height: 220px; object-fit: contain;" ) %></div>
+                        <div><%= shoe.brand %> <%= shoe.model %> <%= shoe.color %> Size <%= shoe.size %></div>
+                        <% if current_user.id == shoe.user_id %>
+                          <div>
+                            <%= link_to "Edit", edit_shoe_path(shoe.id), class:"badge rounded-pill badge-success" %>
+                            <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id), class:"badge rounded-pill badge-warning"  %>
+                            <%= link_to "Delete", shoe_path(shoe.id), data: {
+                              turbo_method: :delete,
+                              turbo_confirm: "Are you sure you want to remove this item?"
+                            }, class:"badge rounded-pill badge-danger" %>
                           </div>
-                        </div>
+                        <% else %>
+                          Owner: <%= shoe.user.username %>
+                        <% end %>
 
-                    <% end %>
-                     </div>
-                  <% end %>
-                  <div class="row justify-content-end mt-2">
-                    <button type="button" class="btn btn-primary position-relative col-2">
-                      All Shoes <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"><%= @shoes_all.count %><span class="visually-hidden">unread messages</span></span>
-                    </button>
+                      <% end %>
+                    </div>
                   </div>
+                </div>
+
+            <% end %>
+              </div>
+          <% end %>
+          <div class="row justify-content-end mt-2">
+            <button type="button" class="btn btn-primary position-relative col-2 " data-mdb-toggle="modal" data-mdb-target="#allShoes">
+              All Shoes <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"><%= @shoes_all.count %><span class="visually-hidden">unread messages</span></span>
+            </button>
+          </div>
       </div>
     </div>
   </div>
@@ -133,3 +135,148 @@
 </div>
 
 
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- 2 column grid layout with text inputs for the first and last names -->
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
+                <input type="text" id="form6Example1" class="form-control" />
+                <label class="form-label" for="form6Example1">First name</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <input type="text" id="form6Example2" class="form-control" />
+                <label class="form-label" for="form6Example2">Last name</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text input -->
+          <div class="form-outline mb-4">
+            <input type="text" id="form6Example3" class="form-control" />
+            <label class="form-label" for="form6Example3">Username</label>
+          </div>
+
+          <!-- Text input -->
+
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="form6Example5" class="form-control" />
+            <label class="form-label" for="form6Example5">Email</label>
+          </div>
+
+          <!-- Number input -->
+          <div class="form-outline mb-4">
+            <input type="number" id="form6Example6" class="form-control" />
+            <label class="form-label" for="form6Example6">Phone</label>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- All Bids -->
+<div class="modal fade" id="allBids" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">All Bids</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group list-group-flush rounded-3">
+          <% @bids_all.each do |bid| %>
+            <% unless bid.auction.status == "Expired" || bid.auction.status == "Close" || bid.auction.status == "Sold"%>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0"><%= bid.auction.shoe.brand %> | <%= bid.auction.shoe.model %>
+                <p class="mb-0">₱<%= bid.price %></p>
+                <p class="mb-0"><%= bid.created_at.strftime("%B %d, %Y | %I:%M %p") %></p>
+                <%= link_to "View", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
+                </p>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- All Shoes -->
+<div class="modal fade" id="allShoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">All Shoes</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <% if @shoes_all.count == 0%>
+            <h2>You don't have any shoes added.</h2>
+          <% else %>
+            <div class="row flex-row">
+            <% @shoes_all.each do |shoe| %>
+
+                <div class="col-md-3 pt-3">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body">
+                      <%= link_to shoe_path(shoe.id) do %>
+
+                        <div><%= image_tag(shoe.image, style: "width: 220px; height: 220px; object-fit: contain;" ) %></div>
+                        <div><%= shoe.brand %> <%= shoe.model %> <%= shoe.color %> Size <%= shoe.size %></div>
+                        <% if current_user.id == shoe.user_id %>
+                          <div>
+                            <%= link_to "Edit", edit_shoe_path(shoe.id), class:"badge rounded-pill badge-success" %>
+                            <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id), class:"badge rounded-pill badge-warning"  %>
+                            <%= link_to "Delete", shoe_path(shoe.id), data: {
+                              turbo_method: :delete,
+                              turbo_confirm: "Are you sure you want to remove this item?"
+                            }, class:"badge rounded-pill badge-danger" %>
+                          </div>
+                        <% else %>
+                          Owner: <%= shoe.user.username %>
+                        <% end %>
+
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+            <% end %>
+              </div>
+          <% end %>
+
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Add Shoe", new_shoe_path, class:"btn btn-primary" %>
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
