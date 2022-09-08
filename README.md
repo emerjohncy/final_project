@@ -27,15 +27,15 @@ In AucShoes, you will have access to a variety of shoes in the smartest way poss
   
 ## Usage
 You can fork the repository and run this line on the terminal
-```
+```ruby
 rails assets:precompile
 ```
 afterwards
-```
+```ruby
 rails db:migrate
 ```
 and finally
-```
+```ruby
 rails s
 ```
 
