@@ -2,8 +2,10 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :configure_permitted_parameters, only: [:create]
-
+  # before_action :configure_permitted_parameters, only: [:create]
+  include Accessible
+  skip_before_action :check_user, only: :destroy
+  
   # GET /resource/sign_in
   # def new
   #   super
@@ -28,9 +30,9 @@ class Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
-  end
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
+  # end
 
   def after_sign_in_path_for(resource)
     root_path

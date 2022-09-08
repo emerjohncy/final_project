@@ -3,8 +3,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :configure_permitted_parameters, only: [:create, :update]
-
+  # before_action :configure_permitted_parameters, only: [:create, :update]
+  include Accessible
+  skip_before_action :check_user, except: [:new, :create]
+  
   # GET /resource/sign_up
   # def new
   #   super
@@ -68,9 +70,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def configure_permitted_parameters
-    added_attrs = [:username, :first_name, :last_name, :contact_number, :email, :password, :password_confirmation, :remember_me, :avatar]
-    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
-    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
-  end
+  # def configure_permitted_parameters
+  #   added_attrs = [:username, :first_name, :last_name, :contact_number, :email, :password, :password_confirmation, :remember_me, :avatar]
+  #   devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+  #   devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  # end
 end

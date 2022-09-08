@@ -3,15 +3,20 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions'
+  }
 
   devise_scope :user do
     get '/profile' => 'pages#profile',
       as: 'profile'
     get '/profile/edit' => 'users/registrations#edit'
+  end
 
+  devise_scope :admin do
+    get '/dashboard' => 'admins/dashboard#index', as: "admin_dashboard"
   end
   
-  devise_for :admins
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
