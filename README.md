@@ -26,13 +26,17 @@ In AucShoes, you will have access to a variety of shoes in the smartest way poss
   - RSpec
   
 ## Usage
-You can fork the repository and use this line on the terminal
+You can fork the repository and run this line on the terminal
 ```
 rails assets:precompile
 ```
 and afterwards run this line
 ```
 rails db:migrate
+```
+finally
+```
+rails s
 ```
 
 ## Acknowledgements
