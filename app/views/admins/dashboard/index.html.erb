@@ -5,9 +5,9 @@
 <div class="card p-2">
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Users</button>
-    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Shoes</button>
-    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auctions</button>
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Users<span class="badge text-bg-secondary ms-1"><%= @users.count %></span></button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Shoes<span class="badge text-bg-secondary ms-1"><%= @shoes.count %></span></button>
+    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auctions<span class="badge text-bg-secondary ms-1"><%= @auctions.count %></span></button>
   </div>
 </nav>
 
@@ -23,7 +23,7 @@
               <th scope="col">Last Name</th>
               <th scope="col">Email</th>
               <th scope="col">Contact Number</th>
-              <th scope="col">Number of Shoes Owned</th>
+              <th scope="col">No. of Shoes Owned</th>
             </tr>
           </thead>
           <tbody>
@@ -65,7 +65,7 @@
                 <td><%= shoe.size %></td>
                 <td><%= shoe.color %></td>
                 <td><%= shoe.condition %></td>
-                <td><%= button_to "View", shoe_path(shoe.id), method: :get %></td>
+                <td><%= button_to "View", shoe_path(shoe.id), method: :get, class: "badge badge-warning" %></td>
             </tr>
             <% end %>
           </tbody>
@@ -85,6 +85,8 @@
               <th scope="col">Status</th>
               <th scope="col">Payment Method</th>
               <th scope="col">Starting Price</th>
+              <th scope="col">No. of Bids</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -98,6 +100,8 @@
                 <td><%= auction.status %></td>
                 <td><%= auction.payment_method %></td>
                 <td><%= auction.starting_price %></td>
+                <td><%= auction.bids.count %></td>
+                <td><%= button_to "View", shoe_auction_path(auction.shoe_id, auction.id), method: :get, class: "badge badge-warning" %></td>
             </tr>
             <% end %>
           </tbody>
