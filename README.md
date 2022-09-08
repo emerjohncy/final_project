@@ -9,7 +9,7 @@ In AucShoes, you will have access to a variety of shoes in the smartest way poss
 
 ## Demo
 ### AucShoes - [Github](https://github.com/emerjohncy/final_project) | [Live](https://still-caverns-49332.herokuapp.com/)
-<img src="https://github.com/druv5319/Sneaks-API/blob/master/Screenshots/demo.gif" width=700 >
+<!-- <img src="" width=700 > -->
 
 ## Technologies Used
   - Ruby 3.1.2
