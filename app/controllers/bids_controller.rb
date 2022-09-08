@@ -17,17 +17,18 @@ class BidsController < ApplicationController
   end
 
   def create
-    redirect_to shoe_auction_path(@shoe.id, @auction.id) if @auction.status != "Open"
-
     @bid = @auction.bids.build(bid_params)
     @bid.user_id = current_user.id
-
-    if @auction.bids.second_to_last.nil? && @bid.price > @auction.starting_price
-      save_bid(@bid)
-    elsif @auction.bids.second_to_last.present? && @bid.price > @auction.bids.second_to_last.price
-      save_bid(@bid)
+    if bid_params[:price].present?
+      if (@auction.bids.count == 0 && @bid.price > @auction.starting_price) || (@auction.bids.count > 0 && @bid.price > @auction.bids.second_to_last.price)
+        save_bid(@bid)
+        flash[:success] = "Bid successfully"
+      else
+        flash[:error] = "Must bid higher"
+        redirect_to shoe_auction_path(@shoe.id, @auction.id)
+      end
     else
-      flash[:error] = "Must bid higher"
+      flash[:error] = "Must input bid"
       redirect_to shoe_auction_path(@shoe.id, @auction.id)
     end
   end

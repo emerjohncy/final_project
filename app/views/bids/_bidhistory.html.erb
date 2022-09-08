@@ -1,8 +1,6 @@
-
 <div>
-    <h5><%= bid.user %></h5>
+    <h5><%= bid.user.username %></h5>
     <h5>Price: <%= bid.price %></h5>
     <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
     <%= link_to "View Shoe", shoe_path(bid.auction.shoe_id) %>
 </div>
-

@@ -14,7 +14,7 @@
 
     <div>
         <% flash.each do |type, msg| %>
-            <div style="color: red;"><%= msg %></div>
+            <div style="color: red;"><%= type %>:<%= msg %></div>
         <% end %>
     </div>
 </div>
