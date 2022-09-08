@@ -8,7 +8,7 @@
 In AucShoes, you will have access to a variety of shoes in the smartest way possible. AucShoes offers a one-of-a-kind shoe experience where shoe collectors, enthusiasts, sellers, or soon-to-be fanatics can buy and sell hottest sneakers/shoes.
 
 ## Demo
-### AucShoes - [Github](https://github.com/emerjohncy/final_project)|[Live](https://still-caverns-49332.herokuapp.com/)
+### AucShoes - [Github](https://github.com/emerjohncy/final_project) | [Live](https://still-caverns-49332.herokuapp.com/)
 <img src="https://github.com/druv5319/Sneaks-API/blob/master/Screenshots/demo.gif" width=700 >
 
 ## Technologies Used
