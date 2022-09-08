@@ -138,7 +138,9 @@
       </div>
       <div class="modal-body">
           <% @auction.bids.each do |bid| %>
-            <%= render 'bids/bidhistory', bid: bid %>
+            <% unless bid.user.nil? %>
+              <%= render 'bids/bidhistory', bid: bid %>
+            <%end%>
           <%end%>
       </div>
       <div class="modal-footer">
