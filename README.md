@@ -30,11 +30,11 @@ You can fork the repository and run this line on the terminal
 ```
 rails assets:precompile
 ```
-and afterwards run this line
+afterwards
 ```
 rails db:migrate
 ```
-finally
+and finally
 ```
 rails s
 ```
