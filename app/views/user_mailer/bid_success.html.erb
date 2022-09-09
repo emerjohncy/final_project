@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi, <%= @owner.first_name %> <%= @owner.last_name %>!</h1>
+    <p>
+        Your <%=link_to "Auction", shoe_auction_url(@bid.auction.shoe_id, @bid.auction_id) %> have successfully receive a bid!<br>
+        <br>
+        Bidder: <b><%= @bidder.username %></b> placed a bid on your auction for a price of <b>₱ <%= @bid.price %></b><br>
+        Congratulations and happy selling!
+    </p>
+    <br>
+    <p>Thank you for joining AucShoes. Place your bets, see the whole place is set!</p>
+    <br>
+    <br>
+    <p><i>This is an automated message, please do not reply.</i></p>
+  </body>
+</html>
