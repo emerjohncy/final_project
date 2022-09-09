@@ -1,12 +1,33 @@
-<div class="container">
-<h1>Available Auctions</h1>
+<div class="container mt-5 pt-5">
+  <h1>Available Auctions</h1>
 
-<div>
-  <% @auctions.each do |auction| %>
-    <%= link_to shoe_auction_path(auction.shoe.id, auction.id) do %>
-      <%# Auction Card %>
-      <%= render "auction_card", auction: auction %>
-    <% end %>
-  <% end %>
-</div>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <% @auctions.each do |auction| %>
+      <div class="col">
+      <%= link_to shoe_auction_path(auction.shoe.id, auction.id) do %>
+        <div class="card h-100 hover-overlay hover-shadow ripple">
+          <%= image_tag(auction.shoe.image, style: "object-fit: contain;", class:"card-img-top") %>
+          <div class="card-body">
+            <h5 class="card-title"><%= auction.shoe.brand %> <%= auction.shoe.model %></h5>
+            <p class="card-text">
+              <span class="badge rounded-pill badge-info">Color: <%= auction.shoe.color %></span>
+               <span class="badge rounded-pill badge-warning">Size <%= auction.shoe.size %> </span>
+              <% if auction.bids.present? %>
+                <div class="col">
+                  <%= auction.bids.count %> bids
+                </div>
+                <div class="col mb-4">
+                  <span >Last Bid: <strong>PHP <%= auction.bids.last.price %></strong></span>
+                </div>
+              <% else %>
+                <p>Starting Price: <strong>Php <%= auction.starting_price %></strong></p>
+              <% end %>
+
+
+            </div>
+          </div>
+        <%end%>
+      </div>
+    <%end%>
+  </div>
 </div>

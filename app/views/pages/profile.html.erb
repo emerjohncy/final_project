@@ -5,10 +5,14 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <%= image_tag(@user.avatar, class: "rounded-circle img-fluid", style: "width: 150px;") %>
+            <% if current_user.avatar.attached? %>
+              <%= image_tag(@user.avatar, class: "rounded-circle img-fluid", style: "width: 150px; height: 150px;") %>
+            <%else%>
+              <%= image_tag('avatar.jpg', class: "rounded-circle", style: "width: 150px; height: 150px;") %>
+            <%end%>
             <h5 class="my-3"><%= @user.first_name %> <%= @user.last_name %></h5>
             <p class="text-muted mb-1">Account Created</p>
-            <p class="text-muted mb-4"><%= @user.created_at %></p>
+            <p class="text-muted mb-4"><%= @user.created_at.strftime("%B %d, %Y | %I:%M %p") %></p>
             <div class="d-flex justify-content-center mb-2">
               <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#editProfile">
                 Edit Profile
@@ -124,7 +128,8 @@
               </div>
           <% end %>
           <div class="row justify-content-end mt-2">
-            <button type="button" class="btn btn-primary position-relative col-2 " data-mdb-toggle="modal" data-mdb-target="#allShoes">
+            <%= link_to "Shoes in Auction", selling_path, class:"btn btn-success ms-1 position-relative col-3 me-2" %>
+            <button type="button" class="btn btn-primary position-relative col-2 me-2" data-mdb-toggle="modal" data-mdb-target="#allShoes">
               All Shoes <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"><%= @shoes_all.count %><span class="visually-hidden">unread messages</span></span>
             </button>
           </div>
@@ -221,7 +226,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

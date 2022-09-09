@@ -1,32 +1,56 @@
-<%# Navbar %>
+
+<div class="container my-5 py-5 z-depth-1">
+  <div class="card">
+    <div class="card-body">
 
 
-<%# <h1>Show shoe</h1> %>
-<%#= link_to "Shoes", root_path %>
-<%#= link_to "Auctions", auctions_path %>
-<div class="container">
-[LEFT SIDE]
-<div>
-  <h1><%= @shoe.brand %> <%= @shoe.model %></h1>
-  <h1><%= @shoe.color %></h1>
-  <h3>Size <%= @shoe.size %></h3>
-  <h3>Condition: <%= @shoe.condition %></h3>
-  <h3>Owner: <%= @shoe.user.username %></h3>
+      <!--Section: Content-->
+      <section class="">
 
-  <%= image_tag(@shoe.image) %>
-</div>
-<br>
-<br>
-<br>
-[RIGHT SIDE]
-  <% if user_signed_in? && current_user.id == @shoe.user_id %>
-    <div>
-      <%= link_to "Edit", edit_shoe_path(@shoe.id) %>
-      <%= link_to "Delete", shoe_path(@shoe.id), data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure you want to remove this item?"
-      } %>
-      <%= link_to "Auction Shoe", new_shoe_auction_path(@shoe.id) %>
+        <!-- Section heading -->
+        <%= link_to profile_path do %><h6 class="font-weight-bold mb-5"><i class="fa-solid fa-circle-chevron-left"></i> Back to Dashboard</h6><%end%>
+        <h2 class="h2-responsive text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+          <strong><%= @shoe.brand %> <%= @shoe.model %></strong>
+        </h2>
+        <span class="badge badge-success product mb-4 ml-xl-0 ml-4">Condtion: <%= @shoe.condition %></span>
+        <span class="badge badge-warning product mb-4 ml-xl-0 ml-4">Size: <%= @shoe.size %></span>
+        <span class="badge badge-info product mb-4 ml-xl-0 ml-4">Color: <%= @shoe.color %></span>
+
+
+        <div class="row">
+
+          <div class="col-lg-6">
+              <div class="text-center text-md-left" role="listbox">
+                <%= image_tag(@shoe.image, class: "img-fluid") %>
+              </div>
+          </div>
+
+          <div class="col-lg-5 text-md-left">
+            <div class="card t-5">
+              <div class="card-body">
+                <h3 class="h3-responsive text-center">
+                  <span class="red-text font-weight-bold">
+                    <% if user_signed_in? && current_user.id == @shoe.user_id %>
+                      <div>
+                        <%= link_to "Auction Shoe", new_shoe_auction_path(@shoe.id), class: "btn btn-success" %>
+                        <%= link_to "Edit", edit_shoe_path(@shoe.id), class: "btn btn-primary"%>
+                        <%= link_to "Delete", shoe_path(@shoe.id), data: {
+                          turbo_method: :delete,
+                          turbo_confirm: "Are you sure you want to remove this item?"
+                        }, class: "btn btn-danger"%>
+
+                      </div>
+                    <% end %>
+                  </span>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Section: Content-->
     </div>
-  <% end %>
+  </div>
 </div>
+
+

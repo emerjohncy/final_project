@@ -1,20 +1,24 @@
-<div class="container">
-    <div>
-        <%= form_with model: [@shoe, @auction, @bid] do |f| %>
-            <div class="form-outline">
-                <%= f.number_field :price, step: 0.01, autofocus: true, id:"typeNumber", class:"form-control" %>
-                <label class="form-label" for="typeNumber">Input Bid</label>
-            </div>
 
-            <div>
-                <%= f.submit class:"btn btn-success btn-block mt-2" %>
-            </div>
-        <% end %>
-    </div>
+<div>
+    <%= form_with model: [@shoe, @auction, @bid] do |f| %>
+        <div class="form-outline ">
+            <%= f.number_field :price, step: 0.01, autofocus: true, id:"typeNumber", class:"form-control" %>
+            <label class="form-label" for="typeNumber">Input Bid</label>
+        </div>
 
     <div>
-        <% flash.each do |type, msg| %>
-            <div style="color: red;"><%= type %>:<%= msg %></div>
-        <% end %>
+
     </div>
+        <div class="text-center">
+            <%= f.submit class:'btn btn-success mt-2 btn-lg'%>
+        </div>
+    <% end %>
 </div>
+
+<div>
+    <% flash.each do |type, msg| %>
+        <div style="color: red;"><%= msg %></div>
+    <% end %>
+</div>
+
+
