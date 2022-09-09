@@ -1,7 +1,5 @@
 <p align="center">
-  
-<img src="https://github.com/emerjohncy/final_project/blob/main/app/assets/images/aucshoes-nav.png" width=250>
-  
+  <img src="https://github.com/emerjohncy/final_project/blob/main/app/assets/images/aucshoes-nav.png" width=250>
 </p>
 
 ## Welcome to AucShoes! 
@@ -11,8 +9,10 @@ Our mission is to provide access to the world’s most coveted items in the smar
 
 ## Demo
 ### AucShoes - [Github](https://github.com/emerjohncy/final_project) | [Live](https://still-caverns-49332.herokuapp.com/)
-<img src="https://github.com/emerjohncy/final_project/blob/main/app/assets/images/sample.gif" width=700 >
-
+<p align="center">
+  <img src="https://github.com/emerjohncy/final_project/blob/main/app/assets/images/sample.gif" width=700 >
+</p>
+  
 ### Account
 You can login to the website and use the following credentials.
 ```
