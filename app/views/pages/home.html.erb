@@ -91,7 +91,10 @@
 <div class="container mt-5">
   <div class="row justify-content-between">
     <div class="col-4">
-      <h4>Trending Sneakers <button class="fa-solid fa-circle-question" style="font-size: 18px" data-mdb-toggle="tooltip" data-mdb-placement="top" title="'Trending' products are a curated collection of our all time bids on auction!"></button></h4>
+      <h4>Trending Sneakers
+      <button type="button" style="font-size: 18px; border: none; background-color: transparent" data-mdb-toggle="tooltip" data-mdb-placement="top" title="'Trending' products are a curated collection of our all time bids on auction!">
+          <i class="fa-solid fa-circle-question"></i>
+       </button></h4>
     </div>
 
     <div class="col-1">
@@ -102,7 +105,12 @@
   <%= render "trending" %>
 
 
-  <h4>Release Calendar</h4>
+  <div class="col-4">
+      <h4>Release Calendar
+      <button type="button" style="font-size: 18px; border: none; background-color: transparent" data-mdb-toggle="tooltip" data-mdb-placement="top" title="Products that are soon available for auction">
+          <i class="fa-solid fa-circle-question"></i>
+       </button></h4>
+    </div>
   <hr>
   <%= render "coming_soon" %>
 
