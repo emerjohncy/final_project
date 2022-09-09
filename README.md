@@ -10,6 +10,12 @@ In AucShoes, you will have access to a variety of shoes in the smartest way poss
 ## Demo
 ### AucShoes - [Github](https://github.com/emerjohncy/final_project) | [Live](https://still-caverns-49332.herokuapp.com/)
 <!-- <img src="" width=700 > -->
+### Account
+You can login to the website and use the following credentials.
+```
+Email: test@email.com
+Password: password
+```
 
 ## Technologies Used
   - Ruby 3.1.2
