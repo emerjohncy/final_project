@@ -1,7 +1,3 @@
-  <% if alert %>
-    <p><%= alert %></p>
-  <% end %>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
 
   <section class="vh-100" style="background-color: #eb9d0e;">

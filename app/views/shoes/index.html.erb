@@ -1,51 +1,38 @@
-<%# Navbar %>
+<div class="container mt-5">
+  <%= link_to profile_path do %><h6 class="font-weight-bold mb-5"><i class="fa-solid fa-circle-chevron-left"></i> Back to Dashboard</h6><%end%>
+  <h1>Your Shoes</h1>
+  <span><%= link_to "Add New Shoes", new_shoe_path %></span>
 
-
-<%# Sidebar %>
-<%= render "layouts/sidebar", user: current_user %>
-
-<%#= link_to "Shoes", shoes_path %>
-<%#= link_to "Auctions", auctions_path %>
-<%#= link_to "Bids", bids_path %>
-<div class="container">
-<h1>
-    Your Portfolio
-    <%= link_to "Add New Shoes", new_shoe_path %>
-</h1>
-
-<% if @shoes.count == 0%>
-  <h2>Your Portfolio is Empty</h2>
-<% else %>
-  <div>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
     <% @shoes.each do |shoe| %>
+      <div class="col">
       <%= link_to shoe_path(shoe.id) do %>
-        <div>
-          <div><%= image_tag(shoe.image) %></div>
-          <div><%= shoe.brand %> <%= shoe.model %> <%= shoe.color %></div>
-          <div>Size <%= shoe.size %></div>
-          <%# <div> %>
-            <%# Condition:  %>
-            <%#= shoe.condition %>
-          <%# </div> %>
-          <% if current_user.id == shoe.user_id %>
-            <div>
-              <%= link_to "Edit", edit_shoe_path(shoe.id) %>
-              <%= link_to "Delete", shoe_path(shoe.id), data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure you want to remove this item?"
-              } %>
-              <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id) %>
+        <div class="card h-100 hover-overlay hover-shadow ripple">
+          <%= image_tag(shoe.image, style: "object-fit: contain; width:306px; height:300px; background-position: center center; background-repeat: no-repeat; overflow: hidden;", class:"card-img-top") %>
+          <div class="card-body">
+            <h5 class="card-title"><%= shoe.brand %> <%= shoe.model %></h5>
+            <p class="card-text">
+              <span class="badge rounded-pill badge-info">Color: <%= shoe.color %></span>
+               <span class="badge rounded-pill badge-warning">Size <%= shoe.size %> </span>
+              <% if current_user.id == shoe.user_id %>
+                <div class="col">
+                  <%= link_to "Edit", edit_shoe_path(shoe.id), class:"badge rounded-pill badge-success" %>
+                  <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id), class:"badge rounded-pill badge-warning"  %>
+                  <%= link_to "Delete", shoe_path(shoe.id), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure you want to remove this item?"
+                  }, class:"badge rounded-pill badge-danger" %>
+                </div>
+              <% else %>
+                 Owner: <%= shoe.user.username %>
+              <% end %>
+
+
             </div>
-          <% else %>
-            Owner: <%= shoe.user.username %>
-          <% end %>
-        </div>
-        <br>
-      <% end %>
-    <% end %>
-<% end %>
-
-
-
+          </div>
+        <%end%>
+      </div>
+    <%end%>
+  </div>
 </div>
-</div>
+

@@ -7,13 +7,13 @@
                 <%= image_tag(auction.shoe.image, class: "img-fluid") %>
                 <div class="card-body">
                     <h6 class="card-title"><%= auction.shoe.brand %> <%= auction.shoe.model %> </h6>
-                      <h5><%= auction.shoe.color %></h5>
-                      <h5>Size <%= auction.shoe.size %></h5>
+                      <span class="badge bg-warning">Size: <%= auction.shoe.size %></span>
+                      <span class="badge bg-info">Color: <%= auction.shoe.color %></span>
                       <% if auction.bids.present? %>
                         <h5>Last Bid: PHP <%= auction.bids.last.price %></h5>
                         <h6><%= auction.bids.count %> bids</h6>
                       <% else %>
-                        <h5>Starting Price: Php <%= auction.starting_price %>
+                        <p>Starting Price: <br><strong>Php <%= auction.starting_price %></strong></p>
                       <% end %>
                 </div>
             <%end%>

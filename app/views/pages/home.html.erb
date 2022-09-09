@@ -101,28 +101,10 @@
   <hr>
   <%= render "trending" %>
 
-<%# PATH:   /trending %>
 
-<h4>Release Calendar</h4>
-<hr>
-    <%= render "coming_soon" %>
+  <h4>Release Calendar</h4>
+  <hr>
+  <%= render "coming_soon" %>
 
-<%# PATH:   /coming_soon %>
-Sa See All: All Auctions with StartDate > Datetime.now
-
-<h4>Coming Soon</h4>
-<hr>
-<div>
-    <% if @coming_soon.present? %>
-        <% @coming_soon.each do |auction| %>
-            <%= link_to shoe_auction_path(auction.shoe.id, auction.id) do %>
-            <%# Auction Card %>
-                <%= render "auctions/auction_card", auction: auction %>
-            <% end %>
-        <% end %>
-    <% else %>
-        <div>No Upcoming Auctions yet</div>
-    <% end %>
-</div>
 </div>
 

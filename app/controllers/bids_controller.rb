@@ -22,13 +22,13 @@ class BidsController < ApplicationController
     if bid_params[:price].present?
       if (@auction.bids.count == 0 && @bid.price > @auction.starting_price) || (@auction.bids.count > 0 && @bid.price > @auction.bids.second_to_last.price)
         save_bid(@bid)
-        flash[:success] = "Bid successfully"
+        flash[:success] = "You have bid successfully!"
       else
-        flash[:error] = "Must bid higher"
+        flash[:error] = "You must bid higher!"
         redirect_to shoe_auction_path(@shoe.id, @auction.id)
       end
     else
-      flash[:error] = "Must input bid"
+      flash[:error] = "You must input a bid!"
       redirect_to shoe_auction_path(@shoe.id, @auction.id)
     end
   end

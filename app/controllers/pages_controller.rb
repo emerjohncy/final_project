@@ -3,10 +3,11 @@ class PagesController < ApplicationController
 
     def profile
         @user = current_user
-        @bids = current_user.bids.limit(5).order('created_at DESC')
+        @bids = current_user.bids.limit(4).order('created_at DESC')
         @bids_all = current_user.bids.all.order('created_at DESC')
         @shoes = current_user.shoes.limit(3).order('created_at DESC')
         @shoes_all = current_user.shoes.all
+        @auctions = current_user.auctions.all
     end
 
     def home
