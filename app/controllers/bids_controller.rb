@@ -48,6 +48,7 @@ class BidsController < ApplicationController
 
   def save_bid(bid)
     if bid.save
+      UserMailer.with(bid: bid).bid_success.deliver_later
       redirect_to shoe_auction_path(@auction.shoe_id, @auction.id)
     else
       render :new, status: :unprocessable_entity
