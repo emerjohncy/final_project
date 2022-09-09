@@ -152,18 +152,19 @@
         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <%= form_for(current_user, url: user_registration_path, html: { method: :put }, data: { turbo: false }) do |f| %>
           <!-- 2 column grid layout with text inputs for the first and last names -->
           <div class="row mb-4">
             <div class="col">
               <div class="form-outline">
-                <input type="text" id="form6Example1" class="form-control" />
-                <label class="form-label" for="form6Example1">First name</label>
+                <%= f.text_field :first_name, autofocus: true, id: "form6Example1", class: "form-control" %>
+                <%= f.label :first_name, class: "form-label", for: "form6Example1" %>
               </div>
             </div>
             <div class="col">
               <div class="form-outline">
-                <input type="text" id="form6Example2" class="form-control" />
+                <%= f.text_field :last_name, autofocus: true, id: "form6Example2", class: "form-control" %>
+                <%= f.label :last_name, class: "form-label", for: "form6Example2" %>
                 <label class="form-label" for="form6Example2">Last name</label>
               </div>
             </div>
@@ -171,30 +172,31 @@
 
           <!-- Text input -->
           <div class="form-outline mb-4">
-            <input type="text" id="form6Example3" class="form-control" />
-            <label class="form-label" for="form6Example3">Username</label>
+            <%= f.text_field :username, autofocus: true, id: "form6Example3", class: "form-control" %>
+            <%= f.label :username, class: "form-label", for: "form6Example3" %>
           </div>
 
           <!-- Text input -->
 
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="email" id="form6Example5" class="form-control" />
-            <label class="form-label" for="form6Example5">Email</label>
+            <%= f.email_field :email, autofocus: true, id: "form6Example5", class: "form-control" %>
+            <%= f.label :email, class: "form-label", for: "form6Example5" %>
           </div>
 
           <!-- Number input -->
           <div class="form-outline mb-4">
-            <input type="number" id="form6Example6" class="form-control" />
-            <label class="form-label" for="form6Example6">Phone</label>
+            <%= f.number_field :contact_number, autofocus: true, id: "form6Example6", class: "form-control" %>
+            <%= f.label "Phone", class: "form-label", for: "form6Example6" %>
           </div>
 
-        </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+            <%= f.submit "Save changes", class: "btn btn-primary" %>
+            <%# <button type="button" class="btn btn-primary">Save changes</button> %>
+          </div>
+        <% end %>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
