@@ -5,14 +5,16 @@
 </p>
 
 ## Welcome to AucShoes! 
-In AucShoes, you will have access to a variety of shoes in the smartest way possible. AucShoes offers a one-of-a-kind shoe experience where shoe collectors, enthusiasts, sellers, or soon-to-be fanatics can buy and sell hottest sneakers/shoes.
+In AucShoes, you will have access to a variety of shoes in the smartest way possible. AucShoes offers a one-of-a-kind shoe experience where shoe collectors, enthusiasts, sellers, or soon-to-be fanatics can show off their hottest sneakers/shoes as well as to bid on them.
+
+The mission of AucShoes is to create a sneaker community that helps them find a rare sneaker that they can bid on to add to their own growing collections of shoes.
 
 ## Demo
 ### AucShoes - [Github](https://github.com/emerjohncy/final_project) | [Live](https://still-caverns-49332.herokuapp.com/)
 <!-- <img src="" width=700 > -->
 ### Account
 You can login to the website and use the following credentials.
-```ruby
+```
 Email: test@email.com
 Password: password
 ```
