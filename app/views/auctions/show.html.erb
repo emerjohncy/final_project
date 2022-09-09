@@ -43,9 +43,13 @@
                         }, class:"btn btn-danger"%>
                     </div>
                   <% elsif @auction.status == "Open" %>
-                    <%= render "bids/form" %>
+                    <% if user_signed_in? %>
+                      <%= render "bids/form" %>
+                    <% else %>
+                      <h4>Login to bid</h4>
+                    <% end %>
                   <% else %>
-                    <h4>Auction is not open yet</h4>
+                    <h4>Auction is <%= @auction.status %></h4>
                   <% end %>
                 <hr>
                 <div class="row justify-content-evenly col-3">
