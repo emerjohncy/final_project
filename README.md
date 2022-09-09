@@ -11,7 +11,8 @@ Our mission is to provide access to the world’s most coveted items in the smar
 
 ## Demo
 ### AucShoes - [Github](https://github.com/emerjohncy/final_project) | [Live](https://still-caverns-49332.herokuapp.com/)
-<!-- <img src="" width=700 > -->
+<img src="https://github.com/emerjohncy/final_project/blob/main/app/assets/images/sample.gif" width=700 >
+
 ### Account
 You can login to the website and use the following credentials.
 ```
