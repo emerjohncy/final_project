@@ -3,7 +3,7 @@
 </p>
 
 ## Welcome to AucShoes! 
-In AucShoes, you will have access to a variety of shoes in the smartest way possible. AucShoes offers a one-of-a-kind shoe experience where shoe collectors, enthusiasts, sellers, or soon-to-be fanatics can show off their hottest sneakers/shoes as well as to bid on them.
+AucShoes offers a one-of-a-kind shoe experience where shoe collectors, enthusiasts, sellers, or soon-to-be fanatics can show off their hottest sneakers/shoes as well as to bid on them.
 
 Our mission is to provide access to the world’s most coveted items in the smartest way possible. Buy and sell the hottest sneakers by auction bids!
 
