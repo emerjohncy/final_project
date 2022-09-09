@@ -1,44 +1,46 @@
-<div>
+<div class="container">
+  <div class="card mb-4 w-50">
+    <div class="card-body">
+      <%= form_with model: [@shoe, @auction] do |f| %>
+        <div class="form-outline mb-4">
+          <%= f.text_area :description, autofocus: true, class:"form-control form-control-lg", type:"text" %>
+          <%= f.label :description, class:"form-label", for: "form2Example17" %>
+        </div>
+
+        <div class="form-outline mb-4">
+          <%= f.datetime_local_field :start_date, autofocus: true, class:"form-control form-control-lg", type: "datetime-local" %>    <%# fix type (label is overlapping) %>
+          <%= f.label :start_date, class:"form-label", for: "form2Example17" %>
+        </div>
+
+        <div class="form-outline mb-4">
+          <%= f.datetime_local_field :end_date, autofocus: true, class:"form-control form-control-lg", type: "datetime-local" %>      <%# fix type (label is overlapping) %>
+          <%= f.label :end_date, class:"form-label", for: "form2Example17" %>
+        </div>
+
+        <div class="form-outline mb-4">
+          <%= f.label :payment_method %>
+          <%= f.radio_button :payment_method, "Cash" %>
+          <%= f.label :payment_method_cash, "Cash" %>
+          <%= f.radio_button :payment_method, "Card" %>
+          <%= f.label :payment_method_card, "Card" %>
+        </div>
+
+        <div class="form-outline mb-4">
+          <%= f.number_field :starting_price, step: 0.01, autofocus: true, class:"form-control form-control-lg" %>
+          <%= f.label :starting_price, class:"form-label", for: "form2Example17" %>
+        </div>
+
+        <div>
+          <%= f.submit "Auction Shoes", class:"btn btn-primary" %>
+          <%= link_to "Cancel", shoe_path(@shoe.id), class:"btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+
     <div>
-        <%= form_with model: [@shoe, @auction] do |f| %>
-            <div>
-                <%= f.label :description %>
-                <%= f.text_area :description, autofocus: true %>
-            </div>
-
-            <div>
-                <%= f.label :start_date %>
-                <%= f.datetime_local_field :start_date, autofocus: true %>
-            </div>
-
-            <div>
-                <%= f.label :end_date %>
-                <%= f.datetime_local_field :end_date, autofocus: true %>
-            </div>
-
-            <div>
-                <%= f.label :payment_method %>
-                <%= f.radio_button :payment_method, "Cash" %>
-                <%= f.label :payment_method_cash, "Cash" %>
-                <%= f.radio_button :payment_method, "Card" %>
-                <%= f.label :payment_method_card, "Card" %>
-
-            </div>
-
-            <div>
-                <%= f.label :starting_price %>
-                <%= f.number_field :starting_price, step: 0.01, autofocus: true %>
-            </div>
-
-            <div>
-                <%= f.submit %>
-                <%= link_to "Cancel", shoe_path(@shoe.id) %>
-            </div>
-        <% end %>
+      <%= @auction.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
     </div>
-
-    <div><%= @auction.errors.full_messages.each do |message| %>
-            <div><%= message %></div>
-        <% end %>
-    </div>
+  </div>
 </div>
