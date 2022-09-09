@@ -12,7 +12,7 @@ In AucShoes, you will have access to a variety of shoes in the smartest way poss
 <!-- <img src="" width=700 > -->
 ### Account
 You can login to the website and use the following credentials.
-```
+```ruby
 Email: test@email.com
 Password: password
 ```
