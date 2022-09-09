@@ -15,22 +15,21 @@
           <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
             <div class="d-flex justify-content-center align-items-center h-100">
               <div class="text-white text-center">
-                <h1 class="mb-3">Learn Bootstrap 5 with MDB</h1>
-                <h5 class="mb-4">Best & free guide of responsive web design</h5>
+                <%= image_tag('aucshoes-nav.png', width: '90')%>
+                <h1 class="mb-3">AucShoes</h1>
+                <h5 class="mb-4">Best & hassle free shoe auctions!</h5>
                 <a
                   class="btn btn-outline-light btn-lg m-2"
-                  href="https://www.youtube.com/watch?v=c9B4TPnak1A"
+                  href="/users/sign_up"
                   role="button"
                   rel="nofollow"
-                  target="_blank"
-                  >Start tutorial</a
+                  >Register Now</a
                 >
                 <a
                   class="btn btn-outline-light btn-lg m-2"
-                  href="https://mdbootstrap.com/docs/standard/"
-                  target="_blank"
+                  href="/faq"
                   role="button"
-                  >Download MDB UI KIT</a
+                  >See our FAQs</a
                 >
               </div>
             </div>
@@ -42,7 +41,7 @@
           <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
             <div class="d-flex justify-content-center align-items-center h-100">
               <div class="text-white text-center">
-                <h2>You can place here any content</h2>
+                <h2>Bid on the shoe you want! </h2>
               </div>
             </div>
           </div>
@@ -55,20 +54,20 @@
             style="
               background: linear-gradient(
                 45deg,
-                rgba(29, 236, 197, 0.7),
+                rgba(235, 157, 14, 0.7),
                 rgba(91, 14, 214, 0.7) 100%
               );
             "
           >
             <div class="d-flex justify-content-center align-items-center h-100">
               <div class="text-white text-center">
-                <h2>And cover it with any mask</h2>
+                <h2>Join and bid the shoe you love!</h2>
                 <a
                   class="btn btn-outline-light btn-lg m-2"
-                  href="https://mdbootstrap.com/docs/standard/content-styles/masks/"
+                  href="/open_auctions"
                   target="_blank"
                   role="button"
-                  >Learn about masks</a
+                  >See all Auctions</a
                 >
               </div>
             </div>
@@ -89,20 +88,30 @@
     </div>
 
 
-<div class="container">
-<p>Trending Sneakers</p> <%= link_to "See All", open_auctions_path %>
-    <%= render "trending" %>
+<div class="container mt-5">
+  <div class="row justify-content-between">
+    <div class="col-4">
+      <h4>Trending Sneakers <button class="fa-solid fa-circle-question" style="font-size: 18px" data-mdb-toggle="tooltip" data-mdb-placement="top" title="'Trending' products are a curated collection of our all time bids on auction!"></button></h4>
+    </div>
+
+    <div class="col-1">
+      <%= link_to "See All", open_auctions_path %>
+    </div>
+  </div>
+  <hr>
+  <%= render "trending" %>
 
 <%# PATH:   /trending %>
-Sa See All: All Auctions with bids.count > 0
 
-<h1>Coming Soon!/Release Calendar</h1>
+<h4>Release Calendar</h4>
+<hr>
     <%= render "coming_soon" %>
 
 <%# PATH:   /coming_soon %>
 Sa See All: All Auctions with StartDate > Datetime.now
 
-<h1>Coming Soon</h1>
+<h4>Coming Soon</h4>
+<hr>
 <div>
     <% if @coming_soon.present? %>
         <% @coming_soon.each do |auction| %>
@@ -116,3 +125,4 @@ Sa See All: All Auctions with StartDate > Datetime.now
     <% end %>
 </div>
 </div>
+

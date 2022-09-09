@@ -1,6 +1,15 @@
-<div>
-    <h5><%= bid.user.username %></h5>
-    <h5>Price: <%= bid.price %></h5>
-    <%= link_to "View Auction", shoe_auction_path(bid.auction.shoe_id, bid.auction.id) %>
-    <%= link_to "View Shoe", shoe_path(bid.auction.shoe_id) %>
-</div>
+
+
+    <tr>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%= bid.user.username %></p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <span class="badge badge-success rounded-pill d-inline">₱ <%= bid.price %></span>
+        <p class="text-muted mb-0"><%= bid.created_at.strftime("%B %d, %Y | %I:%M %p")%></p>
+      </td>
+    </tr>

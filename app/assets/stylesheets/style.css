@@ -7,7 +7,7 @@
 }
 
 .carousel-item:nth-child(1) {
-  background-image: url("slide-1.jpg");
+  background-image: url("slide-1.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -19,7 +19,7 @@
   background-position: center center;
 }
 .carousel-item:nth-child(3) {
-  background-image: url("https://mdbootstrap.com/img/Photos/Others/images/78.jpg");
+  background-image: url("slide-3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -63,4 +63,8 @@ body {
   .sidebar {
     width: 100%;
   }
+}
+
+.createBid {
+  width: 100%;
 }
