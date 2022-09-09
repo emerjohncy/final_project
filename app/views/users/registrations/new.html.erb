@@ -24,7 +24,7 @@
                       <div class="row mb-4">
                         <div class="col">
                           <div class="form-outline">
-                             <%= f.text_field :first_name, class:"form-control"%>
+                             <%= f.text_field :first_name, autofocus: true, class:"form-control"%>
                             <label class="form-label" for="form3Example1">First name</label>
                           </div>
                         </div>
@@ -42,7 +42,7 @@
                       </div>
 
                       <div class="form-outline mb-4">
-                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control form-control-lg" %>
+                        <%= f.email_field :email, autocomplete: "email", class:"form-control form-control-lg" %>
                         <label class="form-label" for="form2Example17">Email Address</label>
                       </div>
 
