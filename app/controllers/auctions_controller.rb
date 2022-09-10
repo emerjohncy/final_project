@@ -76,6 +76,7 @@ class AuctionsController < ApplicationController
         auction.update(status: "Expired")
       else
         auction.update(status: "Sold")
+        Shoe.find(auction.shoe_id).update(user_id: auction.bids.last.user_id)
       end
     end
   end

@@ -56,6 +56,9 @@
                       <h2 class="accordion-header" id="flush-headingOneX">
                         <button class="accordion-button" type="button" data-mdb-toggle="collapse"
                           data-mdb-target="#flush-collapseOneX" aria-expanded="true" aria-controls="flush-collapseOneX">
+                          <% if @shoe.auctions.last.status != "Open" %> 
+                            Previous
+                          <% end %>
                           Auction Details
                         </button>
                       </h2>
