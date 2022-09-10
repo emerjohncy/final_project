@@ -302,14 +302,18 @@
                         <div><%= image_tag(shoe.image, style: "width: 220px; height: 220px; object-fit: contain;" ) %></div>
                         <div><%= shoe.brand %> <%= shoe.model %> <%= shoe.color %> Size <%= shoe.size %></div>
                         <% if current_user.id == shoe.user_id %>
-                          <div>
-                            <%= link_to "Edit", edit_shoe_path(shoe.id), class:"badge rounded-pill badge-success" %>
-                            <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id), class:"badge rounded-pill badge-warning"  %>
-                            <%= link_to "Delete", shoe_path(shoe.id), data: {
-                              turbo_method: :delete,
-                              turbo_confirm: "Are you sure you want to remove this item?"
-                            }, class:"badge rounded-pill badge-danger" %>
-                          </div>
+                           <% if shoe.auctions.present? && shoe.auctions.last.status == 'Open'%>
+                            <%= link_to 'View in Auction', shoe_auction_path(shoe.id, shoe.auctions.last.id), class: "badge badge-warning" %>
+                          <% else %>
+                            <div>
+                              <%= link_to "Auction Shoe", new_shoe_auction_path(shoe.id), class: "badge badge-success" %>
+                              <%= link_to "Edit", edit_shoe_path(shoe.id), class: "badge badge-primary"%>
+                              <%= link_to "Delete", shoe_path(shoe.id), data: {
+                                turbo_method: :delete,
+                                turbo_confirm: "Are you sure you want to remove this item?"
+                              }, class: "badge badge-danger"%>
+                            </div>
+                          <%end%>
                         <% else %>
                           Owner: <%= shoe.user.username %>
                         <% end %>
