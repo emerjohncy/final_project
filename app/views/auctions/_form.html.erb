@@ -7,24 +7,23 @@
           <%= f.label :description, class:"form-label", for: "form2Example17" %>
         </div>
 
+        <label class="form-label" for="form2Example17">Start Date</label>
         <div class="form-outline mb-4">
           <%= f.datetime_local_field :start_date, autofocus: true, class:"form-control form-control-lg", type: "datetime-local" %>    <%# fix type (label is overlapping) %>
-          <%= f.label :start_date, class:"form-label", for: "form2Example17" %>
         </div>
 
+        <label class="form-label" for="form2Example17">End Date</label>
         <div class="form-outline mb-4">
           <%= f.datetime_local_field :end_date, autofocus: true, class:"form-control form-control-lg", type: "datetime-local" %>      <%# fix type (label is overlapping) %>
-          <%= f.label :end_date, class:"form-label", for: "form2Example17" %>
         </div>
 
         <div class="form-outline mb-4">
-          <%= f.label :payment_method %>
+          <%= f.label 'Payment Method:', class:"me-3" %>
           <%= f.radio_button :payment_method, "Cash" %>
-          <%= f.label :payment_method_cash, "Cash" %>
+          <%= f.label :payment_method_cash, "Cash Payment", class:"me-3" %>
           <%= f.radio_button :payment_method, "Card" %>
-          <%= f.label :payment_method_card, "Card" %>
+          <%= f.label :payment_method_card, "Visa / MasterCard" %>
         </div>
-
         <div class="form-outline mb-4">
           <%= f.number_field :starting_price, step: 0.01, autofocus: true, class:"form-control form-control-lg" %>
           <%= f.label :starting_price, class:"form-label", for: "form2Example17" %>
