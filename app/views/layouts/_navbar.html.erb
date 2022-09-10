@@ -10,9 +10,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav d-flex flex-row ms-auto me-3">
-        <%= link_to "Auction", open_auctions_url, class:"nav-link pr-1" %>
+        <%= link_to "Auctions", open_auctions_url, class:"nav-link pr-1" %>
         <%= link_to "FAQs", faq_path, class:"nav-link " %>
         <% if user_signed_in? %>
+          <%= link_to "Add Shoe", new_shoe_path,  class:"nav-link " %>
           <li class="nav-item me-3 me-lg-0 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-mdb-toggle="dropdown"
               aria-expanded="false">
@@ -30,11 +31,13 @@
             </ul>
           </li>
         <% elsif admin_signed_in? %>
+
           <li class="nav-item me-3 me-lg-0 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-mdb-toggle="dropdown"
               aria-expanded="false">
               <%= image_tag('avatar.jpg', class: "rounded-circle", style: "width: 22px;") %>
             </a>
+
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown1">
               <li><%= link_to "Dashboard", admin_dashboard_path, class:"dropdown-item" %></li>
               <li><%= button_to "Log Out", destroy_admin_session_path, method: :delete, class:"dropdown-item" %></li>
