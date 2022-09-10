@@ -12,7 +12,7 @@
         <h2 class="h2-responsive text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
           <strong><%= @shoe.brand %> <%= @shoe.model %></strong>
         </h2>
-        <span class="badge badge-success product mb-4 ml-xl-0 ml-4">Condtion: <%= @shoe.condition %></span>
+        <span class="badge badge-success product mb-4 ml-xl-0 ml-4">Condition: <%= @shoe.condition %></span>
         <span class="badge badge-warning product mb-4 ml-xl-0 ml-4">Size: <%= @shoe.size %></span>
         <span class="badge badge-info product mb-4 ml-xl-0 ml-4">Color: <%= @shoe.color %></span>
 
@@ -49,33 +49,36 @@
                     <% end %>
                   </span>
                 </h3>
-                <div class="accordion accordion-borderless" id="accordionFlushExampleX">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOneX">
-                      <button class="accordion-button" type="button" data-mdb-toggle="collapse"
-                        data-mdb-target="#flush-collapseOneX" aria-expanded="true" aria-controls="flush-collapseOneX">
-                        Auction Details
-                      </button>
-                    </h2>
-                    <div id="flush-collapseOneX" class="accordion-collapse collapse show"
-                      aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
-                      <div class="accordion-body">
-                        <p>Starting Price: <%= @shoe.auctions.last.starting_price %></p>
-                        <p>Number of Bids: <%= @shoe.auctions.last.bids.count %></p>
-                        <p>
-                          Highest Bidder:
-                          <% if @shoe.auctions.last.bids.last.present? %>
-                            <%= @shoe.auctions.last.bids.last.user.username %> | Php<%= @shoe.auctions.last.bids.last.price %>
-                          <% else %>
-                            No Bids yet
-                          <% end %>
-                        </p>
-                        <p>Opening Time: <%= @shoe.auctions.last.start_date.strftime("%B %d, %Y | %I:%M %p") %></p>
-                        <p>Closing Time: <%= @shoe.auctions.last.end_date.strftime("%B %d, %Y | %I:%M %p") %></p>
+                
+                <% if @shoe.auctions.last.present? %>
+                  <div class="accordion accordion-borderless" id="accordionFlushExampleX">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingOneX">
+                        <button class="accordion-button" type="button" data-mdb-toggle="collapse"
+                          data-mdb-target="#flush-collapseOneX" aria-expanded="true" aria-controls="flush-collapseOneX">
+                          Auction Details
+                        </button>
+                      </h2>
+                      <div id="flush-collapseOneX" class="accordion-collapse collapse show"
+                        aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
+                        <div class="accordion-body">
+                            <p>Starting Price: <%= @shoe.auctions.last.starting_price %></p>
+                            <p>Number of Bids: <%= @shoe.auctions.last.bids.count %></p>
+                          <p>
+                            Highest Bidder:
+                            <% if @shoe.auctions.last.bids.last.present? %>
+                              <%= @shoe.auctions.last.bids.last.user.username %> | Php<%= @shoe.auctions.last.bids.last.price %>
+                            <% else %>
+                              No Bids yet
+                            <% end %>
+                          </p>
+                          <p>Opening Time: <%= @shoe.auctions.last.start_date.strftime("%B %d, %Y | %I:%M %p") %></p>
+                          <p>Closing Time: <%= @shoe.auctions.last.end_date.strftime("%B %d, %Y | %I:%M %p") %></p>
+                        </div>
                       </div>
                     </div>
                   </div>
-              </div>
+                <% end %>
             </div>
           </div>
         </div>
